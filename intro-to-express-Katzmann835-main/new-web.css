@@ -1,0 +1,11 @@
+/*Nathan Katzman*/
+/*This will design the website for use for a static page*/
+
+body{
+    background-color:mintcream;
+    font-family: Times;
+}
+
+h2{
+ font: size 30px;
+}
