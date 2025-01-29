@@ -9,3 +9,17 @@ body{
 h2{
  font: size 30px;
 }
+
+button#DynamButton{
+    padding: 25px;
+    background-color: #d89549;
+    border: 3px solid chocolate;
+    margin: 0px 150px;
+    box-shadow: 6px 6px chocolate;
+}
+img{
+    border: 3px solid #d89549;
+    box-shadow: 6px 6px chocolate;
+    height: 500px;
+    width: 550px;
+}
