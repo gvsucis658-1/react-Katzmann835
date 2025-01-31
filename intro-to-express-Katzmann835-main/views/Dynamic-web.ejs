@@ -12,8 +12,18 @@
             padding: 25px;
             background-color: #d89549;
             border: 3px solid chocolate;
-            margin: 0px 150px;
+            margin: 0px 50px;
             box-shadow: 6px 6px chocolate;
+        }
+        div#Weather{
+            background-color:#d89549;
+            border: 4px double chocolate;
+            box-shadow: 6px 8px chocolate;
+        }
+        div#Destination{
+            background-color:#d89549;
+            border: 4px double chocolate;
+            box-shadow: 6px 8px chocolate;
         }
         </style>
     </head>
@@ -22,31 +32,40 @@
 
 
 <h2>What is the weather?</h2>
+
+<div id="Weather">
 <ul>
-    <% items.forEach(temp => { %>
+    <% temp.forEach(temp => { %>
         <li><%= temp %></li>
-    <%}) %>
+    <% }); %>
 </ul>
+</div>
 
 <h2>How far is the destination from East Grand Rapids?</h2>
+
+<div id="Destination">
 <ul>
-    <% items.forEach(dist => { %>
+    <% dist.forEach(dist => { %>
         <li><%= dist %></li>
-    <%}) %>
+    <% }); %>
 </ul>
+</div>
 
 <!--This will post the Weather of a place-->
-<div>
-<div h2>Temperature</h2>
+
+<h2>Temperature</h2>
 <form method="POST" action="/submit"><br>
     <label for="Weather"></label><br>
     <input type="text" id="Weather" name="Weather">
     <input type="submit" value="Submit">
 </form>
-</div>
+
 
 <br>
-<button id = "Static-use">Return to static page</button>
+<h2>Retry:</h2>
+<a href='Dynamic-web'>
+    <button id = "Static-use">Try Again</button>
+</a>
 
 </body>
 

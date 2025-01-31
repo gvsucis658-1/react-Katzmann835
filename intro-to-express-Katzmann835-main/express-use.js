@@ -4,7 +4,10 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
+//Running the static webpage:
+
 app.set('view engine', 'ejs');
+
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/New-website.html');
 });
@@ -39,18 +42,18 @@ app.get('/Dynamic-web', (req, res) => {
     const data = {
         weather: 'Finding the Weather',
         traveling: 'traveling',
-        temp: ['45', '55', '66', '3', '77'],
-        dist: ['2281.9', '6084', '3639.7', '2989', '4291']
+        temp: ['??', '??', '??', '??', '??'],
+        dist: ['??', '??', '??', '??', '??']
     }
     res.render('Dynamic-web', data);
 });
 
 app.post('/submit', (req, res) => {
     const data = {
-        weather: 'The weather is:',
-        traveling: 'The travel distance is:',
-        temp: ['45', '55', '66', '3', '77'],
-        dist: ['2281.9', '6084', '3639.7', '2989', '4291']
+        weather: 'The weather for the places',
+        traveling: 'The travel distance for each place',
+        temp: ['45°f', '55°f', '66°f', '3°f', '77°f'],
+        dist: ['2281.9 Miles', '6084 Miles', '3639.7 Miles', '2989 Miles', '4291 Miles']
     }
     res.render('Dynamic-web', data);
 })
