@@ -1,0 +1,65 @@
+<!--Dynamic Web Page for Showing the weather temperature, and travel time for the places.-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+        body{
+            background-color:mintcream;
+            font-family: times;
+        }
+        button#Static-use{
+            padding: 25px;
+            background-color: #d89549;
+            border: 3px solid chocolate;
+            margin: 0px 150px;
+            box-shadow: 6px 6px chocolate;
+        }
+        </style>
+    </head>
+<body>
+    <h1><%=weather %> and <%=traveling %> status</h1>
+
+
+<h2>What is the weather?</h2>
+<ul>
+    <% items.forEach(temp => { %>
+        <li><%= temp %></li>
+    <%}) %>
+</ul>
+
+<h2>How far is the destination from East Grand Rapids?</h2>
+<ul>
+    <% items.forEach(dist => { %>
+        <li><%= dist %></li>
+    <%}) %>
+</ul>
+
+<!--This will post the Weather and travel of a place-->
+<div>
+<div h2>Temperature</h2>
+<form method="POST" action="/submit"><br>
+    <label for="Weather"></label><br>
+    <input type="text" id="Weather" name="Weather">
+    <input type="submit" value="Submit">
+</form>
+</div>
+
+<div>
+<h2>Travel</h2>
+<form method="POST" action="/submit"><br>
+    <label for="Travel"></label><br>
+    <input type="text" id="Travel" name="Travel">
+    <input type="submit" value="Submit">
+</form>
+<br>
+<button id = "Static-use">Return to static page</button>
+</div>
+
+
+</body>
+
+
+
+
+</html>
