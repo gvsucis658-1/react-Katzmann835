@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for nathan-k on 2025-02-06T09:10:50-05:00
+# fly.toml app configuration file generated for expressjs-hw on 2025-02-06T12:08:08-05:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'nathan-k'
+app = 'expressjs-hw'
 primary_region = 'ord'
 
 [build]
