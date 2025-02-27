@@ -1,0 +1,42 @@
+<!--This will create the webpage for the use_model.ts code-->
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport", content="width=device-width", minimum-scale="1.0",initial-scale=1, user-scaleble="yes">
+    <link rel="stylesheet" href="/.style.css">
+    <title>User-Prompted-Melody</title>
+</head>
+
+<!--TODO: Create the rest of the code for the function in ts to work on HTML-->
+<body>
+    <h1>User Prompted Melody</h1>
+    <p>Type in the melody prompt:</p>
+    <!--This will allow the user to type the prompt-->
+    <input type="text" id="Melody" name="Melody-Name">
+
+    <p>Melody Function called:</p>
+    <script>
+        /*const input: string = prompt(MusicVAE.name = Melody);*/
+    </script>
+
+    <p>Called Melody is being stored</p>
+    <p> Stored Melody result:</p>
+
+    <p>Melody is being retrived from storage and is being started</p>
+    <script>
+        function retrieve_Mel(){
+        localStorage.getItem(store_Mel);
+        const Melody = store_Mel.initialize();
+    }
+    </script>
+
+    <p>Retrieved melody is being played</p> 
+
+    <p>Melody has been stopped.</p>
+
+</body>
+
+
+</html>
