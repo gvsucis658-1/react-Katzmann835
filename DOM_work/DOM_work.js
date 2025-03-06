@@ -1,7 +1,7 @@
 const One = document.getElementsByClassName('Red_square')
 const Total_One = One.length
 for (let i = 0; i < One.length; i++){
-    One[i].style.backgroundcolor = 'red'
+    One[i].style.backgroundcolor = "red"
 }
 
 const Two = document.getElementsByClassName('Yellow_square')
