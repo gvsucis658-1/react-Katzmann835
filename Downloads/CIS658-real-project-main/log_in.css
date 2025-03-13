@@ -1,0 +1,16 @@
+/*This page will stylize the login page*/
+
+body{
+    background-color:#abb7fd;
+    border: solid 3px;
+    border-color: maroon;
+}
+
+button#Login{
+    background-color: maroon;
+    color: white;
+    padding: 25px;
+    margin: 0px 30px;
+    border: solid 3px;
+    border-color: maroon;
+}
