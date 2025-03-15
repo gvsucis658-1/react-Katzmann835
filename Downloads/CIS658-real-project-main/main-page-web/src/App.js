@@ -1,5 +1,6 @@
 import './App.css';
 import Comments from './Comments.js';
+import friend_list from './friend_list.jsx';
 
 function App() {
 
