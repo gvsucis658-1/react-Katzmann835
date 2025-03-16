@@ -35,6 +35,8 @@ function App() {
       
       <Comments />
 
+      <friend_list />
+
       <button onClick>Like</button>
 
       <button onClick>Dislike</button>

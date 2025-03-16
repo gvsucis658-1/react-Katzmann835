@@ -42,8 +42,8 @@ function Page_use_list(props) {
 function Logic_Use(props) {
     return <div className = "logic"> {
         <h3>What is the logic behind the users?</h3>
-        {props.step.map((logic, index) => (<p key={index}>{logic}</p>))}
     }
+    props.step.map{(logic, index) => (<p key={index}>{logic}</p>)}
     </div>;
 }
 
@@ -69,8 +69,6 @@ function Page(props){
 }
 
 ReactDOM.render(
-    <Known friend_lists={data} title = "Social Media Website Interaction List Example"/>,
+    <Page friend_lists={data} title = "Social Media Website Interaction List Example"/>,
     document.getElementById("main")
 );
-
-export default friend_list;
