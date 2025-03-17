@@ -67,8 +67,3 @@ function Page(props){
         </div>
     </section>
 }
-
-ReactDOM.render(
-    <Page friend_lists={data} title = "Social Media Website Interaction List Example"/>,
-    document.getElementById("main")
-);
