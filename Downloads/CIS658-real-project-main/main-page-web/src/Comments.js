@@ -13,7 +13,7 @@ function Comments(){
         };
     
         return(
-            <form Submission={commentSubmit}>
+            <form submission={commentSubmit}>
             <textarea
             value = {commenttext}
             onChange = {(commentevent) => setcommenttext(commentevent.target.value)}
