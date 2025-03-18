@@ -55,7 +55,7 @@ function Usage(props){
     </div>;
 }
 
-function Page(props){
+function Friends_list(props){
     return <section>
         <h1> {props.title} </h1>
         <div classname = 'Friends_list' > {props.Friend_lists.map((Friends_list, index) =>  (
