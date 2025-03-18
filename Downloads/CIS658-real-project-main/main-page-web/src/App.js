@@ -1,6 +1,6 @@
 import './App.css';
 import Comments from './Comments.js';
-import friend_list from './friend_list.jsx';
+import Friends_list from './Friends_list.jsx';
 
 function App() {
 
@@ -35,7 +35,7 @@ function App() {
       
       <Comments />
 
-      <friend_list />
+      <Friends_list />
 
       <button onClick>Like</button>
 

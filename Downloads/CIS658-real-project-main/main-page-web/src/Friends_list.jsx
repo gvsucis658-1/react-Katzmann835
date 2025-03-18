@@ -58,12 +58,13 @@ function Usage(props){
 function Page(props){
     return <section>
         <h1> {props.title} </h1>
-        <div classname = 'friend_lists' > {props.friend_lists.map((friend_list, index) =>  (
+        <div classname = 'Friends_list' > {props.Friend_lists.map((Friends_list, index) =>  (
             <Usage key = {index}
-            interactions = {friend_list.interactions}
-            logic = {friend_list.logic}
+            interactions = {Friends_list.interactions}
+            logic = {Friends_list.logic}
             />
         ))}
         </div>
     </section>
 }
+export default Friends_list
