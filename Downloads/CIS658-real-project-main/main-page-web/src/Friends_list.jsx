@@ -1,4 +1,7 @@
 //The list will show examples of the way a user can interact with the website
+import React from 'react';
+
+
 const data = [{
     interactions: [
         { name: "User1", friend_amount: 1, likes: 3, dislikes: 1, guess_button_used: "None"},
