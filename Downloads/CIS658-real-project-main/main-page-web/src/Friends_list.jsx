@@ -40,10 +40,10 @@ function Page_use_list(props) {
 }
 
 function Logic_Use(props) {
-    return <div className = "logic"> {
+    return <div className = "logic">
         <h3>What is the logic behind the users?</h3>
-    }
-    props.step.map{(logic, index) => (<p key={index}>{logic}</p>)}
+
+    {props.logic.map((logic, index) => (<p key={index}>{logic}</p>))}
     </div>;
 }
 
@@ -58,7 +58,7 @@ function Usage(props){
 function Friends_list(props){
     return <section>
         <h1> {props.title} </h1>
-        <div classname = 'Friends_list' > {props.Friend_lists.map((Friends_list, index) =>  (
+        <div classname = 'Friends_list' > {props.Friends_list.map((Friends_list, index) =>  (
             <Usage key = {index}
             interactions = {Friends_list.interactions}
             logic = {Friends_list.logic}
@@ -67,4 +67,5 @@ function Friends_list(props){
         </div>
     </section>
 }
+
 export default Friends_list
