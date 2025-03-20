@@ -1,5 +1,4 @@
 <!--This will create the webpage for the use_model.ts code-->
-
 <html>
 <head>
     <meta charset="utf-8">
@@ -7,6 +6,8 @@
     <meta name="viewport", content="width=device-width", minimum-scale="1.0",initial-scale=1, user-scaleble="yes">
     <link rel="stylesheet" href="/.style.css">
     <title>User-Prompted-Melody</title>
+    <script> var exports = {}; </script>
+    <script type = "module" src = "use_model.js"></script>
 </head>
 
 <!--TODO: Create the rest of the code for the function in ts to work on HTML-->
@@ -30,6 +31,38 @@
         localStorage.getItem(store_Mel);
         const Melody = store_Mel.initialize();
     }
+    </script>
+
+    <p> This gets the piano keys and then generates based on user click:</p>
+    <button class = "simulate-key">A Key</button>
+    <button class = "simulate-key">B Key</button>
+    <button class = "simulate-key">C Key</button>
+    <button class = "simulate-key">D Key</button>
+    <button class = "simulate-key">E Key</button>
+    <button class = "simulate-key">F Key</button>
+    <button class = "simulate-key">G Key</button>
+    <button class = "gen_mel">Generate melody</button>
+    <script>
+        function get_melody_Keys(){
+            const simulate_key = document.querySelectorAll('.simulate-key')
+
+            simulate_key.forEach(key =>  {
+                key.addEventListener('click', () => {
+                    const melody = key.dataset.melody;
+                    playMel(melody);
+                });
+            });
+        }
+
+        function playMel(){
+            const play = new Melody(MusicVAE)
+        }
+
+        function genMel(){
+            const gen_key = document.querySelectorAll('gen_mel')
+            const generate = new Melody(MusicVAE)
+            console.log(MusicVAE.melody)
+        }
     </script>
 
     <p>Retrieved melody is being played</p> 
