@@ -1,7 +1,5 @@
 //The list will show examples of the way a user can interact with the website
-import React from 'react';
-
-
+// eslint-disable-next-line
 const data = [{
     interactions: [
         { name: "User1", friend_amount: 1, likes: 3, dislikes: 1, guess_button_used: "None"},
@@ -31,6 +29,7 @@ function Page_use(props) {
 function Page_use_list(props) {
     return <ul className = "interactions" >{
         props.interactions.map((item, index) => (
+            // eslint-disable-next-line
             <Page_use amount = {item.name}
             friend_amount = {item.friend_amount}
             likes = {item.likes}
@@ -63,8 +62,8 @@ function Friends_list(props){
         <h1> {props.title} </h1>
         <div classname = 'Friends_list' > {props.Friends_list.map((Friends_list, index) =>  (
             <Usage key = {index}
-            interactions = {Friends_list.interactions}
-            logic = {Friends_list.logic}
+            interactions = {data.interactions}
+            logic = {data.logic}
             />
         ))}
         </div>
