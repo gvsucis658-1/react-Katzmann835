@@ -22,13 +22,13 @@ const data = [{
 
 }];
 
-function Page_use(data) {
-    return <li>{data.name} {data.friend_amount} {data.likes} {data.dislikes} {data.guess_button_used}</li>
+function Page_use(props) {
+    return <li>{props.name} {props.friend_amount} {props.likes} {props.dislikes} {props.guess_button_used}</li>
 }
 
-function Page_use_list(data) {
+function Page_use_list(props) {
     return <ul className = "interactions" >{
-        data.interactions.map((item, index) => (
+        props.interactions.map((item, index) => (
             // eslint-disable-next-line
             <Page_use amount = {item.name}
             friend_amount = {item.friend_amount}
@@ -41,29 +41,29 @@ function Page_use_list(data) {
     </ul>
 }
 
-function Logic_Use(data) {
+function Logic_Use(props) {
     return <div className = "logic">
         <h3>What is the logic behind the users?</h3>
 
-    {data.logic.map((logic, index) => (<p key={index}>{logic}</p>))}
+    {props.logic.map((logic, index) => (<p key={index}>{logic}</p>))}
     </div>;
 }
 
-function Usage(data){
+function Usage(props){
     return <div>
         <h2 onClick={() => console.log("This is the user's interaction")}></h2>
-        <Page_use_list interactions = {data.interactions} />
-        <Logic_Use logic = {data.logic} />
+        <Page_use_list interactions = {props.interactions} />
+        <Logic_Use logic = {props.logic} />
     </div>;
 }
 
-function Friends_list(data){
+function Friends_list(props){
     return <section>
-        <h1> {data.title} </h1>
-        <div className = 'Friends_list' > {data.data.map((data, index) =>  (
+        <h1> {props.title} </h1>
+        <div className = 'Friends_list' > {data.map((Friends_list, index) =>  (
             <Usage key = {index}
-            interactions = {data.interactions}
-            logic = {data.logic}
+            interactions = {Friends_list.interactions}
+            logic = {Friends_list.logic}
             />
         ))}
         </div>
