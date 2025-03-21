@@ -52,16 +52,16 @@ function Logic_Use(data) {
 function Usage(data){
     return <div>
         <h2 onClick={() => console.log("This is the user's interaction")}></h2>
-        <Page_use_list interactions = {data} />
-        <Logic_Use logic = {data} />
+        <Page_use_list interactions = {data.interactions} />
+        <Logic_Use logic = {data.logic} />
     </div>;
 }
 
 function Friends_list(data){
     return <section>
         <h1> {data.title} </h1>
-        <div classname = 'Friends_list' > {data.Friends_list.map((data) =>  (
-            <Usage key = {data}
+        <div className = 'Friends_list' > {data.data.map((data, index) =>  (
+            <Usage key = {index}
             interactions = {data.interactions}
             logic = {data.logic}
             />
