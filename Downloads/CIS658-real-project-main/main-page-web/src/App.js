@@ -34,8 +34,6 @@ function App() {
       <button onClick={() => document.getElementById('image_upload').click()}>Post Picture</button>
       
       <Comments />
-  
-      <Friends_list />
 
       <button onClick>Like</button>
 
