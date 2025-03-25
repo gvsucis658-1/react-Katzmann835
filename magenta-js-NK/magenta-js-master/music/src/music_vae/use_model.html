@@ -19,7 +19,7 @@
 
     <p>Melody Function called:</p>
     <script>
-        /*const input: string = prompt(MusicVAE.name = Melody);*/
+        const input = prompt(MusicVAE.name = Melody);
     </script>
 
     <p>Called Melody is being stored</p>
@@ -44,7 +44,7 @@
     <button class = "gen_mel">Generate melody</button>
     <script>
         function get_melody_Keys(){
-            const simulate_key = document.querySelectorAll('.simulate-key')
+            const simulate_key = document.querySelectorAll(".simulate-key")
 
             simulate_key.forEach(key =>  {
                 key.addEventListener('click', () => {
@@ -59,7 +59,7 @@
         }
 
         function genMel(){
-            const gen_key = document.querySelectorAll('gen_mel')
+            const gen_key = document.querySelectorAll("gen_mel")
             const generate = new Melody(MusicVAE)
             console.log(MusicVAE.melody)
         }
