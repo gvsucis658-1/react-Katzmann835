@@ -1,6 +1,5 @@
 import './App.css';
 import Comments from './Comments.js';
-import Friends_list from './Friends_list.jsx';
 
 function App() {
 
@@ -10,7 +9,10 @@ function App() {
         const ImageData = new ImageData();
         ImageData.append('image', file);
 
-        fetch('/App')
+        fetch('/App', {
+          method: 'POST',
+          body: ImageData
+        })
         .then(response => response.json())
         .then(data => {
           console.log('Image uploaded', data);
