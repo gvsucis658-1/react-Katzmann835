@@ -2,6 +2,8 @@ import './App.css';
 import Comments from './Comments.js';
 import Likes from './Likes.js';
 import Dislikes from './Dislikes.js';
+import Friends from './Friends.js';
+import Unfriend from './Unfriend.js';
 
 function App() {
 
@@ -49,9 +51,12 @@ function App() {
 
       <button onClick>Reply</button>
 
-      <button onClick>Friend</button>
+      <p>Friends: </p>
+      <Friends />
+      <br></br>
 
-      <button onClick>Unfriend</button>
+      <p>Unfriend: </p>
+      <Unfriend />
     </div>
   );
 }
