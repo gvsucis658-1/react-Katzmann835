@@ -1,5 +1,7 @@
 import './App.css';
 import Comments from './Comments.js';
+import Likes from './Likes.js';
+import Dislikes from './Dislikes.js';
 
 function App() {
 
@@ -37,9 +39,13 @@ function App() {
       
       <Comments />
 
-      <button onClick>Like</button>
+      <p>Likes: </p>
+      <Likes />
+      <br></br>
 
-      <button onClick>Dislike</button>
+      <p>Dislikes: </p>
+      <Dislikes />
+      <br></br>
 
       <button onClick>Reply</button>
 
