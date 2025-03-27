@@ -36,9 +36,9 @@ function start_Mel() {
 }
 //TODO: After the melody starts, the melody will play for a specific time. There needs to be a function that will determine how long the melody will play when the function is executed
 function time_Mel() {
-    Melody.event(console.log("Did the code stop?", 1000));
-    Melody.event(console.log("Did the code stop?", 5000));
-    Melody.event(console.log("Did the code stop?", 10000));
+    Melody.call(console.log("Did the code stop?", 1000));
+    Melody.call(console.log("Did the code stop?", 5000));
+    Melody.call(console.log("Did the code stop?", 10000));
     //This function will be used to stop the time as provided by the user
 }
 //TODO: Finally, the function will have an end condition which is when the melody will stop playing. 
