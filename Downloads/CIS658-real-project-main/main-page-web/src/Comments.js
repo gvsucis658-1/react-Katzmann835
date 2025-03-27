@@ -11,17 +11,41 @@ function Comments(){
             setcommenttext('');
             }
         };
+
+    const updateComment = (index, updateComment) => {
+        const newComment = [...comment];
+        newComment[index].name = updateComment;
+        setcomment(newComment);
+    };
+
+    const deleteComment = (index) => {
+        const newComment = comment.filter((_, i) => i !== index);
+        setcomment(newComment);
+    }
         
     
         return(
-            <form submission={commentSubmit}>
+            <div>
+            <form onSubmit={commentSubmit}>
             <textarea
             value = {commenttext}
             onChange = {(commentevent) => setcommenttext(commentevent.target.value)}
             placeholder = "Comment: "
             />
-            <button onClick>Post Comment</button>
+            <button type = "submit">Post Comment</button>
             </form>
+
+            <ul>
+                {comment.map((comment, index) => (
+                    <li key ={index}>{comment}
+                    <br></br>
+                    <button onClick={() => updateComment(index, prompt("new Comment: "))}>Edit Comment</button>
+                    <button onClick={() => deleteComment(index)}>Delete Comment</button>
+                    
+                    </li>
+                ))}
+            </ul>
+            </div>
         );
     }
 export default Comments

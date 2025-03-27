@@ -25,6 +25,7 @@ function App() {
         })
         .then(data => {
           console.log('Image uploaded', data);
+          event.target.value = null;
         })
         .catch(error => {
           console.error('Image failed to upload:', error);
