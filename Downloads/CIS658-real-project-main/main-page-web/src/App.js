@@ -8,22 +8,29 @@ import Unfriend from './Unfriend.js';
 function App() {
 
   const postImage = (event) => {
-    const file = event.target.file[0];
+    const file = event.target.files[0];
       if (file){
-        const ImageData = new ImageData();
+        const ImageData = new FormData();
         ImageData.append('image', file);
 
-        fetch('/App', {
+        fetch('http://localhost:3000', {
           method: 'POST',
-          body: ImageData
+          body: ImageData,
         })
-        .then(response => response.json())
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Image failed to upload');
+          }
+          return response.json();
+        })
         .then(data => {
           console.log('Image uploaded', data);
         })
         .catch(error => {
           console.error('Image failed to upload:', error);
         });
+      } else {
+        console.error('User failed to select an image');
       }
     };
   
