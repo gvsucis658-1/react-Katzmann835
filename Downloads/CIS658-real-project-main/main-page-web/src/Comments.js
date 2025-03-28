@@ -14,7 +14,7 @@ function Comments(){
 
     const updateComment = (index, updateComment) => {
         const newComment = [...comment];
-        newComment[index].name = updateComment;
+        newComment[index] = updateComment;
         setcomment(newComment);
     };
 
