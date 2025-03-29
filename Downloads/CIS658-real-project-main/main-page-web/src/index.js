@@ -10,7 +10,6 @@ root.render(
   <React.StrictMode>
     <App />
     <Friends_list />
-    <server />
   </React.StrictMode>
 );
 
