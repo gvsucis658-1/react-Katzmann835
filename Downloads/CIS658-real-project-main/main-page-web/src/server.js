@@ -10,10 +10,7 @@ const db = new sqlite3.Database('./appdb.db', (err) => {
     }
     console.log('Connected to the sqlite3 database');
 });
-db.run('CREATE TABLE IF NOT EXISTS App' (
-    'id INTEGER PRIMARY KEY AUTOINCREMENT',
-    'name TEXT'
-));
+db.run('CREATE TABLE IF NOT EXISTS App (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT)');
 
 Application.get('/App', (req, res) => {
     db.all('SELECT * FROM App', [], (err, rows) => {
