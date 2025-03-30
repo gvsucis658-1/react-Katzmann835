@@ -4,6 +4,7 @@ import Likes from './Likes.js';
 import Dislikes from './Dislikes.js';
 import Friends from './Friends.js';
 import Unfriend from './Unfriend.js';
+import Replies from './Replies.js';
 
 function App() {
 
@@ -57,7 +58,9 @@ function App() {
       <Dislikes />
       <br></br>
 
-      <button onClick>Reply</button>
+      <p>Reply to the post: </p>
+      <Replies />
+      <br></br>
 
       <p>Friends: </p>
       <Friends />
