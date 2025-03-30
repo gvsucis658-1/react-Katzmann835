@@ -5,6 +5,7 @@ import Dislikes from './Dislikes.js';
 import Friends from './Friends.js';
 import Unfriend from './Unfriend.js';
 import Replies from './Replies.js';
+import UseLogin from './UseLogin.js';
 
 function App() {
 
@@ -38,6 +39,10 @@ function App() {
   
   return (
     <div className="App">
+
+      <UseLogin />
+      <br></br>
+
       <h1>Nathan's social media website</h1>
 
       <input type = "file"
