@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Login(){
     const[username, setUsername] = useState('');
     const[password, setPassword] = useState('');
+    const navigate = useNavigate();
 
     const submitForm = async (event) => {
         event.preventDefault();
@@ -18,6 +20,7 @@ function Login(){
 
         if (response.ok){
             sessionStorage.setItem('token', data.token);
+            navigate('/Main');
         } else {
             alert(data.message);
         }
@@ -37,7 +40,7 @@ function Login(){
             <div>
                 <label htmlFor='password'>Password:</label>
                 <input
-                    type= "text"
+                    type= "password"
                     id= "password"
                     name= "password"
                     value= {password}

@@ -1,10 +1,7 @@
 import './App.css';
-import Comments from './Comments.js';
-import Likes from './Likes.js';
-import Dislikes from './Dislikes.js';
-import Friends from './Friends.js';
-import Unfriend from './Unfriend.js';
-import Replies from './Replies.js';
+import React from 'react';
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import Main from './Main.js'
 import UseLogin from './UseLogin.js';
 
 function App() {
@@ -40,39 +37,16 @@ function App() {
   return (
     <div className="App">
 
-      <UseLogin />
+      <h1>Login:</h1>
+      <Router>
+        <Routes>
+          <Route path = "/UseLogin" element = {<UseLogin/>} />
+          <Route path = "/App" element = {<Main />} />
+          <Route path = "/" element = {<UseLogin/>}/>
+        </Routes>
+      </Router>
       <br></br>
 
-      <h1>Nathan's social media website</h1>
-
-      <input type = "file"
-      id = "image_upload"
-      accept = "image/*"
-      style = {{display: 'none'}}
-      onChange = {postImage}></input>
-
-      <button onClick={() => document.getElementById('image_upload').click()}>Post Picture</button>
-      
-      <Comments />
-
-      <p>Likes: </p>
-      <Likes />
-      <br></br>
-
-      <p>Dislikes: </p>
-      <Dislikes />
-      <br></br>
-
-      <p>Reply to the post: </p>
-      <Replies />
-      <br></br>
-
-      <p>Friends: </p>
-      <Friends />
-      <br></br>
-
-      <p>Unfriend: </p>
-      <Unfriend />
     </div>
   );
 }
