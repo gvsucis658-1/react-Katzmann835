@@ -14,7 +14,7 @@ function Main() {
         const ImageData = new FormData();
         ImageData.append('image', file);
 
-        fetch('http://localhost:3000', {
+        fetch('https://localhost:3001/App', {
             method: 'POST',
             body: ImageData,
         })
@@ -67,6 +67,15 @@ function Main() {
 
             <p>Unfriend: </p>
             <Unfriend />
+            <br></br>
+
+            <p>Promote:</p>
+
+            <br></br>
+
+            <p>Demote</p>
+
+            <br></br>
             </div>
     )
 }
