@@ -21,8 +21,12 @@
     <script>
         const input = prompt(MusicVAE.name = Melody);
     </script>
+    <button OnClick = "Mel_prompt()">Call prompt</button>
 
-    <p>Called Melody is being stored</p>
+    <p>Called Melody is being stored:</p>
+    <button OnClick = "store_Mel()">Stores the Melody</button>
+
+
     <p> Stored Melody result:</p>
 
     <p>Melody is being retrived from storage and is being started</p>
@@ -31,7 +35,10 @@
         localStorage.getItem(store_Mel);
         const Melody = store_Mel.initialize();
     }
+    
     </script>
+    <button OnClick = "retrieve_Mel()">Retrieve Melody</button>
+
 
     <p> This gets the piano keys and then generates based on user click:</p>
     <button class = "simulate-key">A Key</button>
@@ -67,7 +74,10 @@
 
     <p>Retrieved melody is being played</p> 
 
+    <button OnClick = "start_Mel()">Melody has been started</button>
+
     <p>Melody has been stopped.</p>
+    <button OnClick = "stop_Mel()">Melody has been stopped</button>
 
 </body>
 
