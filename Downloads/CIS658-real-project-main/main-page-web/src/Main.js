@@ -6,6 +6,8 @@ import Dislikes from './Dislikes.js';
 import Friends from './Friends.js';
 import Unfriend from './Unfriend.js';
 import Replies from './Replies.js';
+import Promote from './Promote.js';
+import Demote from './Demote.js';
 
 function Main() {
     const postImage = (event) => {
@@ -70,12 +72,13 @@ function Main() {
             <br></br>
 
             <p>Promote:</p>
-
+            <Promote />
             <br></br>
 
-            <p>Demote</p>
-
+            <p>Demote:</p>
+            <Demote />
             <br></br>
+            
             </div>
     )
 }

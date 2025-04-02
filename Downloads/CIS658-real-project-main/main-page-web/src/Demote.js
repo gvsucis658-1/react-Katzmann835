@@ -13,6 +13,7 @@ function Demote(){
         const demoteUsed = () => {
             demoted(demote);
         }
+        
 
     return (
         <div style ={{position: 'relative', bottom: '50px'}}>

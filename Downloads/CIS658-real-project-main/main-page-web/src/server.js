@@ -46,5 +46,5 @@ Application.delete('./App/:id', (req, res) => {
 });
 
 Application.listen(port, () => {
-    console.log('Server listening on port: ${port}');
+    console.log(`Server listening on port: ${port}`);
 });

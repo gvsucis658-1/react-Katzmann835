@@ -21,7 +21,7 @@ function RunServer(){
     };
 
     const deleteApp = async (id) => {
-        await axios.delete('https://localhost:3001/App/${id}');
+        await axios.delete(`https://localhost:3001/App/${id}`);
         fetchApp();
     }
 
@@ -29,12 +29,12 @@ function RunServer(){
         <>
         <h1>App Server</h1>
         <ul>
-            {App.map(App => (
-                <li key={App.id}>
-                {App.name}
-                <button onClick={() => deleteApp(App.id)}>Delete</button>
+            {App.map(app => (
+                <li key={app.id}>
+                {app.name}
+                <button onClick={() => deleteApp(app.id)}>Delete</button>
                 </li>
-            ))};
+            ))}
         </ul>
 
         <input type="text" value={newApp} onChange={e => setNewApp(e.target.value)} />
