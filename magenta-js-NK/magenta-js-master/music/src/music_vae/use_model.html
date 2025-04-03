@@ -18,16 +18,19 @@
     <input type="text" id="Melody" name="Melody-Name">
 
     <p>Melody Function called:</p>
+    <button OnClick = `Call_Music()`>Calls the Melody</button>
+    <br>
+    <p>Calls the prompt:</p>
     <script>
         const input = prompt(MusicVAE.name = Melody);
     </script>
-    <button OnClick = "Mel_prompt()">Call prompt</button>
+    <button OnClick = `Mel_prompt()`>Call prompt</button>
 
     <p>Called Melody is being stored:</p>
-    <button OnClick = "store_Mel()">Stores the Melody</button>
+    <button OnClick = `store_Mel()`>Stores the Melody</button>
 
 
-    <p> Stored Melody result:</p>
+    <p> The Melody is now stored.</p>
 
     <p>Melody is being retrived from storage and is being started</p>
     <script>
@@ -37,7 +40,7 @@
     }
     
     </script>
-    <button OnClick = "retrieve_Mel()">Retrieve Melody</button>
+    <button OnClick = `retrieve_Mel()`>Retrieve Melody</button>
 
 
     <p> This gets the piano keys and then generates based on user click:</p>
@@ -74,12 +77,10 @@
 
     <p>Retrieved melody is being played</p> 
 
-    <button OnClick = "start_Mel()">Melody has been started</button>
+    <button OnClick = `start_Mel()`>Melody has been started</button>
 
     <p>Melody has been stopped.</p>
-    <button OnClick = "stop_Mel()">Melody has been stopped</button>
+    <button OnClick = `stop_Mel()`>Melody has been stopped</button>
 
 </body>
-
-
 </html>
