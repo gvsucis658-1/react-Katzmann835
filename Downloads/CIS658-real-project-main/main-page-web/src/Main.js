@@ -16,7 +16,7 @@ function Main() {
         const ImageData = new FormData();
         ImageData.append('image', file);
 
-        fetch('https://localhost:3001/App', {
+        fetch('http://localhost:3001/App', {
             method: 'POST',
             body: ImageData,
         })

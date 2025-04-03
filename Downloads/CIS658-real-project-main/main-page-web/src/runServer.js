@@ -10,18 +10,18 @@ function RunServer(){
     }, []);
 
     const fetchApp = async () => {
-        const response = await axios.get('https://localhost:3001/App');
+        const response = await axios.get('http://localhost:3001/App');
         setApp(response.data.App);
     };
 
     const addApp = async () => {
-        await axios.post('https://localhost:3001/App', {name: newApp});
+        await axios.post('http://localhost:3001/App', {name: newApp});
         setNewApp('');
         fetchApp();
     };
 
     const deleteApp = async (id) => {
-        await axios.delete(`https://localhost:3001/App/${id}`);
+        await axios.delete(`http://localhost:3001/App/${id}`);
         fetchApp();
     }
 

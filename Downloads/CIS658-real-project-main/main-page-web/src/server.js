@@ -1,7 +1,9 @@
 const express = require('express');
 const sqlite3 = require('sqlite3').verbose();
+const cors = require('cors')
 const Application = express();
 const port = 3001;
+Application.use((cors));
 
 Application.use(express.json());
 const db = new sqlite3.Database('./appdb.db', (err) => {
@@ -35,7 +37,7 @@ Application.post('/App', (req, res) => {
     res.json({message: 'App works as intended'});
 });
 
-Application.delete('./App/:id', (req, res) => {
+Application.delete('/App/:id', (req, res) => {
     db.run('DELETE FROM App WHERE id = ?', [req.params.id], function(err) {
         if (err) {
             res.status(400).send({error: err.message});
