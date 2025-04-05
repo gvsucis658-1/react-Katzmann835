@@ -1,11 +1,14 @@
 const express = require('express');
 const sqlite3 = require('sqlite3').verbose();
-const cors = require('cors')
+const cors = require('cors');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const Application = express();
 const port = 3001;
-Application.use((cors));
 
+Application.use(cors());
 Application.use(express.json());
+
 const db = new sqlite3.Database('./appdb.db', (err) => {
     if (err) {
         console.error(err.message);
@@ -25,6 +28,8 @@ Application.get('/App', (req, res) => {
     res.json({message: 'App works as intended'});
 });
 
+const appUser = [db];
+
 Application.post('/App', (req, res) => {
     const { new_obj } = req.body;
     db.run('INSERT INTO App(new_obj) VALUES(?)', [new_obj], function(err){
@@ -35,6 +40,21 @@ Application.post('/App', (req, res) => {
         res.json({id: this.lastID});
     });
     res.json({message: 'App works as intended'});
+});
+
+Application.post('/App', async (req, res) => {
+    const {username, password} = req.body;
+    const newUser = appUser.find(n => n.username === username);
+    if (!newUser){
+        return res.status(400).json({message: 'Login Failed'});
+    }
+    const newPassword = await bcrypt.compare(password, newUser.hashedPassword);
+    if (!newPassword){
+        return res.status(400).json({message: 'Login Failed'});
+    }
+
+    const token = jwt.sign({userId: newUser.id}, 'new_key', {expiresIn: '30m'});
+    res.status(200).json({message: 'Login success!', token: token});
 });
 
 Application.delete('/App/:id', (req, res) => {

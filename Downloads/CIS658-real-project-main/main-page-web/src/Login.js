@@ -9,7 +9,7 @@ function Login(){
     const submitForm = async (event) => {
         event.preventDefault();
 
-        const response = await fetch('http://localhost:3001/api/login', {
+        const response = await fetch('http://localhost:3001/App', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -18,7 +18,7 @@ function Login(){
         });
         const data = await response.json();
 
-        if (response.ok){
+        if (response.ok && data.token){
             sessionStorage.setItem('token', data.token);
             navigate('/Main');
         } else {
@@ -35,6 +35,7 @@ function Login(){
                     id= "username"
                     value= {username}
                     onChange= {(e) => setUsername(e.target.value)}
+                    required
                 />
             </div>
             <div>
@@ -45,6 +46,7 @@ function Login(){
                     name= "password"
                     value= {password}
                     onChange= {(e) => setPassword(e.target.value)}
+                    required
                 />
             </div>
         <button type = "submit">Login</button>

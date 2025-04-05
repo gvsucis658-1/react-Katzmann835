@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Login from './Login.js';
+import Login from './Login';
 import React from 'react';
 
 function UseLogin() {
