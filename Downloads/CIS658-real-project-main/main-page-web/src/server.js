@@ -16,6 +16,7 @@ const db = new sqlite3.Database('./appdb.db', (err) => {
     console.log('Connected to the sqlite3 database');
 });
 db.run('CREATE TABLE IF NOT EXISTS App (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT)');
+db.run('CREATE TABLE IF NOT EXISTS Users (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, hashedPassword TEXT)');
 
 Application.get('/App', (req, res) => {
     db.all('SELECT * FROM App', [], (err, rows) => {
@@ -24,37 +25,31 @@ Application.get('/App', (req, res) => {
             return;
         }
         res.json({App: rows});
-    })
-    res.json({message: 'App works as intended'});
-});
-
-const appUser = [db];
-
-Application.post('/App', (req, res) => {
-    const { new_obj } = req.body;
-    db.run('INSERT INTO App(new_obj) VALUES(?)', [new_obj], function(err){
-        if (err) {
-            res.status(400).send({error: err.message});
-            return;
-        }
-        res.json({id: this.lastID});
     });
-    res.json({message: 'App works as intended'});
 });
 
 Application.post('/App', async (req, res) => {
-    const {username, password} = req.body;
-    const newUser = appUser.find(n => n.username === username);
-    if (!newUser){
-        return res.status(400).json({message: 'Login Failed'});
-    }
-    const newPassword = await bcrypt.compare(password, newUser.hashedPassword);
-    if (!newPassword){
-        return res.status(400).json({message: 'Login Failed'});
-    }
+    const { new_obj, username, password } = req.body;
 
-    const token = jwt.sign({userId: newUser.id}, 'new_key', {expiresIn: '30m'});
-    res.status(200).json({message: 'Login success!', token: token});
+    db.get('SELECT * FROM Users WHERE username = ?', [username], async (err, newUser) => {
+        if (err) {
+            return res.status(400).send({error: err.message});
+        }
+        if (!newUser) {
+            return res.status(400).json({message: 'Login Failed'});
+        }
+        const newPassword = await bcrypt.compare(password, newUser.hashedPassword);
+        if(!newPassword){
+            return res.status(400).json({message: 'Login Failed, incorrect password'});
+        }
+        const token = jwt.sign({userId: newUser.id}, 'new_key', {expiresIn: '30m'});
+        db.run('INSERT INTO App(new_obj) VALUES(?)', [new_obj], function(err){
+        if (err) {
+            return res.status(400).send({error: err.message});
+        }
+        res.status(200).json({message: 'Login success!', token: token, id: this.lastID});
+        });
+    });
 });
 
 Application.delete('/App/:id', (req, res) => {
