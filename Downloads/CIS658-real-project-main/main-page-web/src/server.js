@@ -1,10 +1,13 @@
 const express = require('express');
 const sqlite3 = require('sqlite3').verbose();
 const cors = require('cors');
+const multer = require('multer');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const e = require('express');
 const Application = express();
 const port = 3001;
+const newUsers = [];
 
 Application.use(cors());
 Application.use(express.json());
@@ -26,6 +29,40 @@ Application.get('/App', (req, res) => {
         }
         res.json({App: rows});
     });
+});
+
+const newImage = multer({
+    dest: './appdb.db'
+}).single('image');
+
+Application.post('/Main', async (req, res) => {
+    newImage(req, res, (err) => {
+        if (err) {
+            console.error('Image failed to upload', err);
+            return res.status(400).json({error: 'Image failed to upload'});
+        }
+
+        console.log('Image uploaded:', req.file);
+        return res.status(200).json({
+            message: 'Image sucessfully uploaded',
+            filename: req.file.filename
+        });
+    });
+});
+
+
+Application.post('/Register', async (req, res) => {
+    const {username, password} = req.body;
+
+    const findUser = newUsers.find((newUser) => newUser.username === username);
+        if (findUser){
+            return res.status(400).send({message: "Username already exists"});
+        }
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        newUsers.push({username, password: hashedPassword});
+
+        res.status(200).json({message: 'Register success!'});
 });
 
 Application.post('/App', async (req, res) => {
