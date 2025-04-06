@@ -32,7 +32,7 @@ Application.get('/App', (req, res) => {
 });
 
 const newImage = multer({
-    dest: './appdb.db'
+    dest: './uploads'
 }).single('image');
 
 Application.post('/Main', async (req, res) => {
