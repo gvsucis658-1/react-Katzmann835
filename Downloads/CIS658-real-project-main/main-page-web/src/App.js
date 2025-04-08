@@ -11,7 +11,6 @@ function App() {
   return (
     <div className="App">
 
-      <h1>Login:</h1>
       <Router>
         <Routes>
           <Route path = "/UseLogin" element = {<UseLogin />} />

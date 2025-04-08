@@ -1,5 +1,5 @@
 import './App.css';
-import React from 'react';
+import React, {useState} from 'react';
 import Comments from './Comments.js';
 import Likes from './Likes.js';
 import Dislikes from './Dislikes.js';
@@ -8,8 +8,12 @@ import Unfriend from './Unfriend.js';
 import Replies from './Replies.js';
 import Promote from './Promote.js';
 import Demote from './Demote.js';
+import FriendLimit from './FriendLimit.js';
 
 function Main() {
+
+    const [imageURL, newimageURL] = useState(null);
+
     const postImage = (event) => {
     const file = event.target.files[0];
     if (file){
@@ -28,6 +32,7 @@ function Main() {
         })
         .then(data => {
             console.log('Image uploaded', data);
+            newimageURL(data.imageURL);
             event.target.value = null;
         })
         .catch(error => {
@@ -41,6 +46,7 @@ function Main() {
         <div>
             <h1>Nathan's social media website</h1>
 
+            <p>Post a picture: </p>
             <input type = "file"
             id = "image_upload"
             accept = "image/*"
@@ -49,35 +55,46 @@ function Main() {
 
             <button onClick={() => document.getElementById('image_upload').click()}>Post Picture</button>
 
+            {imageURL && (
+                <div>
+                    <img src = {imageURL} alt = "uploads" style = {{height: '350px', width: '350px'}}/>
+                </div>
+            )}
+
+            <p>Comments: </p>
             <Comments />
 
             <p>Likes: </p>
             <Likes />
-            <br></br>
+            <br />
 
             <p>Dislikes: </p>
             <Dislikes />
-            <br></br>
+            <br />
 
             <p>Reply to the post: </p>
             <Replies />
-            <br></br>
+            <br />
 
             <p>Friends: </p>
             <Friends />
-            <br></br>
+            <br />
+
+            <p>Limit/Unlimit Friend amount: </p>
+            <FriendLimit />
+            <br />
 
             <p>Unfriend: </p>
             <Unfriend />
-            <br></br>
+            <br />
 
             <p>Promote:</p>
             <Promote />
-            <br></br>
+            <br />
 
             <p>Demote:</p>
             <Demote />
-            <br></br>
+            <br />
             
             </div>
     )

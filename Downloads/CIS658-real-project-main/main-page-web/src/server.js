@@ -25,6 +25,7 @@ Application.get('/App', (req, res) => {
     db.all('SELECT * FROM App', [], (err, rows) => {
         if (err) {
             res.status(400).send({error: err.message});
+            console.log("ERROR");
             return;
         }
         res.json({App: rows});
@@ -67,12 +68,18 @@ Application.post('/Register', async (req, res) => {
 
 Application.post('/App', async (req, res) => {
     const { new_obj, username, password } = req.body;
-
+    console.log("Hi");
+    console.log(username);
+    console.log(password);
     db.get('SELECT * FROM Users WHERE username = ?', [username], async (err, newUser) => {
+        console.log(err);
+        console.log(newUser);
         if (err) {
+            console.log(err);
             return res.status(400).send({error: err.message});
         }
         if (!newUser) {
+            console.log(newUser);
             return res.status(400).json({message: 'Login Failed'});
         }
         const newPassword = await bcrypt.compare(password, newUser.hashedPassword);

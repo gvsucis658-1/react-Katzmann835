@@ -28,6 +28,7 @@ function Login(){
     };
     return(
         <form onSubmit={submitForm}>
+            <h1>Login:</h1>
             <div>
                 <label htmlFor='username'>Username:</label>
                 <input

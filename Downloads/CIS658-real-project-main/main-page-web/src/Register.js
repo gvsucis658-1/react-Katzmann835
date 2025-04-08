@@ -32,6 +32,7 @@ function Register(){
 
     return (
         <form onSubmit={submitForm}>
+            <h1>Register New User:</h1>
             <div>
                 <label htmlFor='username'>Username:</label>
                 <input
