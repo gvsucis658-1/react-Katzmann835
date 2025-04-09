@@ -32,7 +32,8 @@ function Main() {
         })
         .then(data => {
             console.log('Image uploaded', data);
-            newimageURL(data.imageURL);
+            const uploadedImageURL = `http://localhost:3001${data.imageURL}`;
+            newimageURL(uploadedImageURL);
             event.target.value = null;
         })
         .catch(error => {

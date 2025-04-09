@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import {ToastContainer, toast} from 'react-toastify';
 
 function Comments(){
     const [commenttext, setcommenttext] = useState('');
@@ -9,6 +10,7 @@ function Comments(){
         if(commenttext.trim() !== '') {
             setcomment([...comment, commenttext]);
             setcommenttext('');
+            toast.success('New comment added!');
             }
         };
 
@@ -16,11 +18,13 @@ function Comments(){
         const newComment = [...comment];
         newComment[index] = updateComment;
         setcomment(newComment);
+        toast.success('Comment has been updated!');
     };
 
     const deleteComment = (index) => {
         const newComment = comment.filter((_, i) => i !== index);
         setcomment(newComment);
+        toast.success('Comment has been deleted!');
     }
         
     
@@ -33,6 +37,7 @@ function Comments(){
             placeholder = "Comment: "
             />
             <button type = "submit">Post Comment</button>
+            <ToastContainer/>
             </form>
 
             <ul>

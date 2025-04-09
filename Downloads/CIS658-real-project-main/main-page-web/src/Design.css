@@ -1,0 +1,14 @@
+body {
+    text-align: center;
+    background-color: rgb(72, 190, 237)
+}
+
+button {
+    background-color: rgb(161, 49, 56);
+    color: white;
+    padding: 10px 10px 10px 10px;
+}
+
+textarea {
+    padding: 10px 10px 10px 10px;
+}

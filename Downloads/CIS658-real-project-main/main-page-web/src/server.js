@@ -6,11 +6,14 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const e = require('express');
 const Application = express();
+const path = require('path');
 const port = 3001;
 const newUsers = [];
 
 Application.use(cors());
 Application.use(express.json());
+
+Application.use('./uploads', express.static(path.join(__dirname, 'uploads')));
 
 const db = new sqlite3.Database('./appdb.db', (err) => {
     if (err) {
@@ -33,7 +36,10 @@ Application.get('/App', (req, res) => {
 });
 
 const newImage = multer({
-    dest: './uploads'
+    dest: './uploads',
+    filename: function (req, file, cb) {
+        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    }
 }).single('image');
 
 Application.post('/Main', async (req, res) => {
@@ -43,10 +49,15 @@ Application.post('/Main', async (req, res) => {
             return res.status(400).json({error: 'Image failed to upload'});
         }
 
+        const imageURL = `./uploads/${req.file.filename}`;
+
+        res.status(200).json({imageURL: imageURL});
+
         console.log('Image uploaded:', req.file);
         return res.status(200).json({
             message: 'Image sucessfully uploaded',
-            filename: req.file.filename
+            filename: req.file.filename,
+            imageURL: imageURL
         });
     });
 });
@@ -71,7 +82,7 @@ Application.post('/App', async (req, res) => {
     console.log("Hi");
     console.log(username);
     console.log(password);
-    db.get('SELECT * FROM Users WHERE username = ?', [username], async (err, newUser) => {
+    db.run('SELECT * FROM Users', async (err, newUser) => {
         console.log(err);
         console.log(newUser);
         if (err) {

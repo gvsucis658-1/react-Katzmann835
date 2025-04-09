@@ -6,6 +6,7 @@ import UseLogin from './UseLogin.js';
 import RunServer from './RunServer.js';
 import Login from './Login.js';
 import Register from './Register.js';
+import Friends_list from './Friends_list.jsx';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path = "/Main" element = {<Main />} />
           <Route path = "/" element = {<UseLogin />}/>
           <Route path = "/RunServer" element = {<RunServer />}/>
+          <Route path = "/Friends_list" element = {<Friends_list/>} />
         </Routes>
       </Router>
 
