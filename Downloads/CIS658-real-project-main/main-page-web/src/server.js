@@ -13,7 +13,7 @@ const newUsers = [];
 Application.use(cors());
 Application.use(express.json());
 
-Application.use('./uploads', express.static(path.join(__dirname, 'uploads')));
+Application.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 const db = new sqlite3.Database('./appdb.db', (err) => {
     if (err) {
@@ -21,6 +21,7 @@ const db = new sqlite3.Database('./appdb.db', (err) => {
     }
     console.log('Connected to the sqlite3 database');
 });
+
 db.run('CREATE TABLE IF NOT EXISTS App (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT)');
 db.run('CREATE TABLE IF NOT EXISTS Users (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, hashedPassword TEXT)');
 
@@ -35,12 +36,14 @@ Application.get('/App', (req, res) => {
     });
 });
 
-const newImage = multer({
+const storage = multer({
     dest: './uploads',
     filename: function (req, file, cb) {
         cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
     }
 }).single('image');
+
+const newImage = multer({storage: storage}).single('image');
 
 Application.post('/Main', async (req, res) => {
     newImage(req, res, (err) => {
@@ -50,10 +53,11 @@ Application.post('/Main', async (req, res) => {
         }
 
         const imageURL = `./uploads/${req.file.filename}`;
+        if (!req.file){
+            return res.status(400).json({error: 'No Imagefile has been found'});
+        }
 
-        res.status(200).json({imageURL: imageURL});
-
-        console.log('Image uploaded:', req.file);
+        console.log('Image uploaded:', imageURL);
         return res.status(200).json({
             message: 'Image sucessfully uploaded',
             filename: req.file.filename,
@@ -66,25 +70,23 @@ Application.post('/Main', async (req, res) => {
 Application.post('/Register', async (req, res) => {
     const {username, password} = req.body;
 
-    const findUser = newUsers.find((newUser) => newUser.username === username);
-        if (findUser){
+    db.get('SELECT * FROM Users WHERE username = ?', [username], async (err, findUser) => {
+        if(findUser){
             return res.status(400).send({message: "Username already exists"});
         }
+    })
         const hashedPassword = await bcrypt.hash(password, 10);
-
-        newUsers.push({username, password: hashedPassword});
-
-        res.status(200).json({message: 'Register success!'});
+        db.run('INSERT INTO Users(username, hashedPassword) VALUES(?, ?)', [username, hashedPassword], function(err) {
+            if (err){
+                return res.status(400).send({error: err.message});
+            }
+            res.status(200).json({message: 'Register success!'});
+        });
 });
 
 Application.post('/App', async (req, res) => {
     const { new_obj, username, password } = req.body;
-    console.log("Hi");
-    console.log(username);
-    console.log(password);
-    db.run('SELECT * FROM Users', async (err, newUser) => {
-        console.log(err);
-        console.log(newUser);
+    db.get('SELECT * FROM Users WHERE username = ?', [username], async (err, newUser) => {
         if (err) {
             console.log(err);
             return res.status(400).send({error: err.message});
@@ -98,7 +100,7 @@ Application.post('/App', async (req, res) => {
             return res.status(400).json({message: 'Login Failed, incorrect password'});
         }
         const token = jwt.sign({userId: newUser.id}, 'new_key', {expiresIn: '30m'});
-        db.run('INSERT INTO App(new_obj) VALUES(?)', [new_obj], function(err){
+        db.run('INSERT INTO App(name) VALUES(?)', [new_obj], function(err){
         if (err) {
             return res.status(400).send({error: err.message});
         }

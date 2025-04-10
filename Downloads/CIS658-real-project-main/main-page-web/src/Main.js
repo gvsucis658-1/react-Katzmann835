@@ -9,6 +9,7 @@ import Replies from './Replies.js';
 import Promote from './Promote.js';
 import Demote from './Demote.js';
 import FriendLimit from './FriendLimit.js';
+import Logout from './Logout.js';
 
 function Main() {
 
@@ -95,6 +96,10 @@ function Main() {
 
             <p>Demote:</p>
             <Demote />
+            <br />
+
+            <p>Logout:</p>
+            <Logout />
             <br />
             
             </div>
