@@ -44,21 +44,28 @@ export function retrieve_Mel(): string | null {
 
 //TODO: Once the melody enters the start function located on a new page or module, the function will start the new melody prompted by the user
 export function start_Mel(){
+    if (currentMel) {
     const NewMel = performance.now();
     MusicVAE.apply(currentMel);
     Melody.apply(currentMel);
-    
+    } else {
+        console.log("No Melody has been played")
+    }
 }
 
 //TODO: After the melody starts, the melody will play for a specific time. There needs to be a function that will determine how long the melody will play when the function is executed
 export function time_Mel(duration: number){
+    if (duration <= 0){
+        console.log("Melody should not play since melody cannot be 0 or less")
+        return;
+    }
 
     console.log(`Melody will play for:${duration} seconds`);
 
     setTimeout(() => {
         console.log("The melody has ended");
         stop_Mel();
-    }, duration);
+    }, duration * 1000);
     //This function will be used to stop the time as provided by the user
 }
 

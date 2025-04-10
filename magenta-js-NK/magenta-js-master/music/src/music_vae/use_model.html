@@ -1,9 +1,11 @@
+<!DOCTYPE html>
+
 <!--This will create the webpage for the use_model.ts code-->
-<html>
+<html lang = "en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width", minimum-scale="1.0", initial-scale=1 user-scalable="yes">
+    <meta name="viewport" content="width=device-width", minimum-scale="1.0", initial-scale=1, user-scalable="yes">
     <link rel="stylesheet" href="/.style.css">
     <title>User-Prompted-Melody</title>
     <script> var exports = {}; </script>
@@ -28,10 +30,10 @@
     <input type="text" id="Melody" name="Melody-Name">
 
     <p>Melody Function called:</p>
-    <button onclick = "Call_Music()">Calls the Melody</button>
+    <button onclick = "Call_Music(document.getElementById('Melody').value)">Calls the Melody</button>
     <br>
     <p>Calls the prompt:</p>
-    <button onclick = "Mel_prompt()">Call prompt</button>
+    <button onclick = "Mel_prompt(document.getElementById('Melody').value)">Call prompt</button>
 
     <p>Called Melody is being stored:</p>
     <button onclick = "store_Mel()">Stores the Melody</button>
@@ -54,13 +56,13 @@
     <button class = "simulate-key" data-note="G">G Key</button>
     <button class = "gen_mel">Generate melody</button>
     <script>
-        function get_melody_Keys(){
+        window.onload = function(){
             const simulate_key = document.querySelectorAll(".simulate-key")
 
             simulate_key.forEach(key =>  {
                 key.addEventListener('click', () => {
-                    const melody = key.dataset.Melody;
-                    playMel(melody);
+                    const note = key.dataset.note;
+                    console.log(`play the note ${note}`);
                 });
             });
         }
@@ -71,6 +73,9 @@
 
         function genMel(){
             const gen_key = document.querySelectorAll("gen_mel")
+            gen_key.addEventListener('click', () => {
+                console.log("Generate the melody:");
+            })
             const generate = new Melody(MusicVAE)
             console.log(MusicVAE.melody)
         }

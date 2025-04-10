@@ -29,9 +29,8 @@ function Mel_prompt(input) {
 //function that stores the melody
 function store_Mel() {
     if (currentMel) {
-        const StoreTheMel = JSON.stringify(Melody);
-        localStorage.setItem("Melody_stored", StoreTheMel);
-        console.log("Melody_stored", StoreTheMel);
+        localStorage.setItem("Melody_stored", currentMel);
+        console.log("Melody_stored", currentMel);
     }
     else {
         console.log("Melody is unable to be stored");
@@ -42,10 +41,9 @@ function store_Mel() {
 function retrieve_Mel() {
     const Mel_stored = localStorage.getItem("Melody_stored");
     if(Mel_stored){
-        const errorMel = JSON.parse(Mel_stored);
-        currentMel = errorMel;
-        console.log("Get the Melody", errorMel);
-        return errorMel;
+        currentMel = Mel_stored;
+        console.log("Get the Melody", Mel_stored);
+        return Mel_stored;
     } else { 
         return null;
     }
@@ -57,12 +55,13 @@ async function start_Mel() {
         try{
             await MusicVAE.apply(currentMel);
             await Melody.apply(currentMel);
-
         }
-        catch{
-            console.log("Melody has not started");
+        catch (error){
+            console.log("Melody has not started", error);
         }
-    };
+    } else {
+        console.log("Melody is not avalible to be started")
+    }
 }
 //TODO: After the melody starts, the melody will play for a specific time. There needs to be a function that will determine how long the melody will play when the function is executed
 function time_Mel(duration) {
