@@ -26,6 +26,7 @@ function Replies(){
             onChange = {(replyevent) => setreplytext(replyevent.target.value)}
             placeholder = "Reply: "
             />
+            <br />
             <button type = "submit">Reply</button>
             </form>
 

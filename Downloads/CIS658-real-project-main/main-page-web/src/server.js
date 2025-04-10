@@ -8,12 +8,11 @@ const e = require('express');
 const Application = express();
 const path = require('path');
 const port = 3001;
-const newUsers = [];
 
 Application.use(cors());
 Application.use(express.json());
 
-Application.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+Application.use('./uploads', express.static(path.join(__dirname, 'uploads')));
 
 const db = new sqlite3.Database('./appdb.db', (err) => {
     if (err) {
@@ -36,12 +35,14 @@ Application.get('/App', (req, res) => {
     });
 });
 
-const storage = multer({
-    dest: './uploads',
+const storage = multer.diskStorage({
+    dest: function(req, file, cb){
+        cb(null, './uploads');
+    },
     filename: function (req, file, cb) {
         cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
     }
-}).single('image');
+});
 
 const newImage = multer({storage: storage}).single('image');
 

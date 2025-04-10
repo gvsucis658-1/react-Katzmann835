@@ -36,6 +36,7 @@ function Comments(){
             onChange = {(commentevent) => setcommenttext(commentevent.target.value)}
             placeholder = "Comment: "
             />
+            <br />
             <button type = "submit">Post Comment</button>
             <ToastContainer/>
             </form>
