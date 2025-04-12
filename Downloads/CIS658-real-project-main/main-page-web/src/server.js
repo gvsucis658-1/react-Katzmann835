@@ -12,7 +12,7 @@ const port = 3001;
 Application.use(cors());
 Application.use(express.json());
 
-Application.use('./uploads', express.static(path.join(__dirname, 'uploads')));
+Application.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 const db = new sqlite3.Database('./appdb.db', (err) => {
     if (err) {
@@ -36,7 +36,7 @@ Application.get('/App', (req, res) => {
 });
 
 const storage = multer.diskStorage({
-    dest: function(req, file, cb){
+    destination: function(req, file, cb){
         cb(null, './uploads');
     },
     filename: function (req, file, cb) {
@@ -44,26 +44,19 @@ const storage = multer.diskStorage({
     }
 });
 
-const newImage = multer({storage: storage}).single('image');
+const newImage = multer({storage: storage});
 
-Application.post('/Main', async (req, res) => {
-    newImage(req, res, (err) => {
-        if (err) {
-            console.error('Image failed to upload', err);
-            return res.status(400).json({error: 'Image failed to upload'});
-        }
+Application.post('/Main', newImage.single('image'), async (req, res) => {
+    if (!req.file){
+        return res.status(400).json({error: 'No Imagefile has been found'});
+    }
+    const imageURL = `./uploads/${req.file.filename}`;
 
-        const imageURL = `./uploads/${req.file.filename}`;
-        if (!req.file){
-            return res.status(400).json({error: 'No Imagefile has been found'});
-        }
-
-        console.log('Image uploaded:', imageURL);
-        return res.status(200).json({
-            message: 'Image sucessfully uploaded',
-            filename: req.file.filename,
-            imageURL: imageURL
-        });
+    console.log('Image uploaded:', imageURL);
+    return res.status(200).json({
+        message: 'Image sucessfully uploaded',
+        filename: req.file.filename,
+        imageURL: imageURL
     });
 });
 
@@ -75,7 +68,6 @@ Application.post('/Register', async (req, res) => {
         if(findUser){
             return res.status(400).send({message: "Username already exists"});
         }
-    })
         const hashedPassword = await bcrypt.hash(password, 10);
         db.run('INSERT INTO Users(username, hashedPassword) VALUES(?, ?)', [username, hashedPassword], function(err) {
             if (err){
@@ -83,6 +75,7 @@ Application.post('/Register', async (req, res) => {
             }
             res.status(200).json({message: 'Register success!'});
         });
+    });
 });
 
 Application.post('/App', async (req, res) => {
