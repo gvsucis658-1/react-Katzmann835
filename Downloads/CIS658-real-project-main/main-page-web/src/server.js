@@ -50,7 +50,7 @@ Application.post('/Main', newImage.single('image'), async (req, res) => {
     if (!req.file){
         return res.status(400).json({error: 'No Imagefile has been found'});
     }
-    const imageURL = `./uploads/${req.file.filename}`;
+    const imageURL = `/uploads/${req.file.filename}`;
 
     console.log('Image uploaded:', imageURL);
     return res.status(200).json({
