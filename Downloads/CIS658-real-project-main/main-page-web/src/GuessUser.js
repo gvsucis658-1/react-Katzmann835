@@ -45,7 +45,7 @@ function GuessUser(){
 
 
             
-            <button style = {{backgroundColor: rgb(69, 114, 56)}}>Accept user</button>
+            <button style = {{backgroundColor: 'rgb(69, 114, 56)'}}>Accept user</button>
             <ToastContainer/>
             <button>Decline user</button>
             <ToastContainer/>

@@ -10,6 +10,7 @@ import Promote from './Promote.js';
 import Demote from './Demote.js';
 import FriendLimit from './FriendLimit.js';
 import Logout from './Logout.js';
+import {ToastContainer, toast} from 'react-toastify';
 
 function Main() {
 
@@ -36,6 +37,7 @@ function Main() {
             const uploadedImageURL = `http://localhost:3001${data.imageURL}`;
             newimageURL(uploadedImageURL);
             event.target.value = null;
+            toast.success('New Image Added!');
         })
         .catch(error => {
             console.error('Image failed to upload:', error);
@@ -59,9 +61,11 @@ function Main() {
 
             {imageURL && (
                 <div>
-                    <img src = {imageURL} alt = "uploads" style = {{height: '350px', width: '350px'}}/>
+                    <img src = {imageURL} alt = "uploads" style = {{height: '350px', width: '350px', border: 'solid 3px'}}/>
                 </div>
             )}
+            <ToastContainer/>
+            <br />
 
             <p>Comments: </p>
             <Comments />

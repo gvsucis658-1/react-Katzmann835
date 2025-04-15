@@ -7,6 +7,7 @@ const jwt = require('jsonwebtoken');
 const e = require('express');
 const Application = express();
 const path = require('path');
+
 const port = 3001;
 
 Application.use(cors());
@@ -56,7 +57,7 @@ Application.post('/Main', newImage.single('image'), async (req, res) => {
     return res.status(200).json({
         message: 'Image sucessfully uploaded',
         filename: req.file.filename,
-        imageURL: imageURL
+        imageURL: imageURL,
     });
 });
 
