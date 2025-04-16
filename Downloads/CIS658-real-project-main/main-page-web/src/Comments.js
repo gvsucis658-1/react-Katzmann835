@@ -1,9 +1,20 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {ToastContainer, toast} from 'react-toastify';
 
 function Comments(){
     const [commenttext, setcommenttext] = useState('');
     const [comment, setcomment] = useState([]);
+
+    useEffect(() => {
+        const Commented = localStorage.getItem('comments');
+        if (Commented) {
+            setcomment(JSON.parse(Commented));
+        }
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem('comments', JSON.stringify(comment));
+    }, [comment]);
 
     const commentSubmit = (commentevent) => {
         commentevent.preventDefault();
@@ -14,11 +25,14 @@ function Comments(){
             }
         };
 
-    const updateComment = (index, updateComment) => {
-        const newComment = [...comment];
-        newComment[index] = updateComment;
-        setcomment(newComment);
-        toast.success('Comment has been updated!');
+    const updateComment = (index) => {
+        const UpdatedComment = prompt('New Comment: ');
+        if (UpdatedComment !== null && UpdatedComment.trim() !== ''){
+            const newComment = [...comment];
+            newComment[index] = UpdatedComment;
+            setcomment(newComment);
+            toast.success('Comment has been updated!');
+        }
     };
 
     const deleteComment = (index) => {
@@ -45,7 +59,7 @@ function Comments(){
                 {comment.map((comment, index) => (
                     <li key ={index}>{comment}
                     <br></br>
-                    <button onClick={() => updateComment(index, prompt("new Comment: "))}>Edit Comment</button>
+                    <button onClick={() => updateComment(index)}>Edit Comment</button>
                     <button onClick={() => deleteComment(index)}>Delete Comment</button>
                     
                     </li>
@@ -54,4 +68,4 @@ function Comments(){
             </div>
         );
     }
-export default Comments
+export default Comments;

@@ -29,7 +29,8 @@ function Login(){
     };
     return(
         <form onSubmit={submitForm}>
-            <h1>Login:</h1>
+            <h1 style = {{fontWeight: '1000', boxShadow: '10px 10px 2.5px black', }}>Login:</h1>
+            <div style = {{border: 'solid 1.5px', boxShadow: '5px 1px 3px black', backgroundColor: 'cyan'}}>
             <div>
                 <label htmlFor='username'>Username:</label>
                 <input
@@ -52,6 +53,7 @@ function Login(){
                 />
             </div>
         <button type = "submit">Login</button>
+        </div>
         </form>
     );
 }

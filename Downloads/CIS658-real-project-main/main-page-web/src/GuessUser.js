@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import Main from './Main.js';
 import Comments from './Comments.js';
 import {ToastContainer, toast} from 'react-toastify';
@@ -61,4 +61,3 @@ function GuessUser(){
 //TODO: I need to ensure that image actually renders before finishing the code
 
 export default GuessUser;
-

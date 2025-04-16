@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 
 //If the user clicks promote: post/picture is placed placed at the bottom, meaning user wants less to see it
 
-function Demote(imageURL, commenttext){
+function Demote({imageURL, commenttext}){
     const demoteToBottom = useRef(null);
         
     const handleDemote = () => {

@@ -27,7 +27,8 @@ function RunServer(){
 
     return (
         <>
-        <h1>App Server</h1>
+        <h1 style={{fontWeight: '1000', boxShadow: '10px 10px 2.5px black', }}>App Server</h1>
+        <div style = {{border: 'solid 1.5px', boxShadow: '5px 1px 3px black', backgroundColor: 'cyan'}}>
         <ul>
             {App.map(app => (
                 <li key={app.id}>
@@ -37,8 +38,11 @@ function RunServer(){
             ))}
         </ul>
 
+        <p>Add new app:</p>
         <input type="text" value={newApp} onChange={e => setNewApp(e.target.value)} />
+        <br/>
         <button onClick={addApp}> Add App </button>
+        </div>
         </>
     );
 }

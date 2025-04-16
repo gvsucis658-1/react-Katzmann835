@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 
 //If the user clicks promote: post/picture is placed placed at the top, meaning user wants more to see it
 
-function Promote(imageURL, commenttext){
+function Promote({imageURL, commenttext}){
     const promoteToTop = useRef(null);
     
     const handlePromote = () => {

@@ -14,7 +14,7 @@ import {ToastContainer, toast} from 'react-toastify';
 
 function Main() {
 
-    const [imageURL, newimageURL] = useState(null);
+    const [imageURL, newimageURL] = useState([]);
 
     const postImage = (event) => {
     const file = event.target.files[0];
@@ -35,7 +35,7 @@ function Main() {
         .then(data => {
             console.log('Image uploaded', data);
             const uploadedImageURL = `http://localhost:3001${data.imageURL}`;
-            newimageURL(uploadedImageURL);
+            newimageURL(prev => [...prev, uploadedImageURL]);
             event.target.value = null;
             toast.success('New Image Added!');
         })
@@ -48,62 +48,93 @@ function Main() {
     };
     return (
         <div>
-            <h1>Nathan's social media website</h1>
+            <h1 style = {{fontWeight: '1000', boxShadow: '10px 10px 2.5px black', }}>Nathan's social media website</h1>
 
-            <p>Post a picture: </p>
+            <div style = {{border: 'solid 1.5px', boxShadow: '5px 1px 3px black', backgroundColor: 'cyan'}}>
+            <p style = {{fontWeight: '500'}}> Post a picture: </p>
             <input type = "file"
             id = "image_upload"
             accept = "image/*"
+            multiple
             style = {{display: 'none'}}
             onChange = {postImage}></input>
 
             <button onClick={() => document.getElementById('image_upload').click()}>Post Picture</button>
 
-            {imageURL && (
+            {imageURL.length > 0 && (
                 <div>
-                    <img src = {imageURL} alt = "uploads" style = {{height: '350px', width: '350px', border: 'solid 3px'}}/>
+                    {imageURL.map((url, index) => (
+                        <img
+                            key={index}
+                            src={url}
+                            alt="uploads"
+                            style={{height: '350px', width: '350px', border: 'solid 3px'}}
+                        />
+                    ))}
                 </div>
             )}
             <ToastContainer/>
+            </div>
             <br />
 
-            <p>Comments: </p>
+            <div style = {{border: 'solid 1.5px', boxShadow: '5px 1px 3px black', backgroundColor: 'cyan'}}>
+            <p style = {{fontWeight: '500'}}>Comments: </p>
             <Comments />
+            </div>
+            <br/>
 
-            <p>Likes: </p>
+            <div style = {{border: 'solid 1.5px', boxShadow: '5px 1px 3px black', backgroundColor: 'cyan'}}>
+            <p style = {{fontWeight: '500'}}>Likes: </p>
             <Likes />
-            <br />
+            </div>
+            <br/>
 
-            <p>Dislikes: </p>
+            <div style = {{border: 'solid 1.5px', boxShadow: '5px 1px 3px black', backgroundColor: 'cyan'}}>
+            <p style = {{fontWeight: '500'}}>Dislikes: </p>
             <Dislikes />
-            <br />
+            </div>
+            <br/>
 
-            <p>Reply to the post: </p>
+            <div style = {{border: 'solid 1.5px', boxShadow: '5px 1px 3px black', backgroundColor: 'cyan'}}>
+            <p style = {{fontWeight: '500'}}>Reply to the post: </p>
             <Replies />
-            <br />
+            </div>
+            <br/>
 
-            <p>Friends: </p>
+            <div style = {{border: 'solid 1.5px', boxShadow: '5px 1px 3px black', backgroundColor: 'cyan'}}>
+            <p style = {{fontWeight: '500'}}>Friends: </p>
             <Friends />
+            </div>
             <br />
 
-            <p>Limit/Unlimit Friend amount: </p>
+            <div style = {{border: 'solid 1.5px', boxShadow: '5px 1px 3px black', backgroundColor: 'cyan'}}>
+            <p style = {{fontWeight: '500'}}>Limit/Unlimit Friend amount: </p>
             <FriendLimit />
+            </div>
             <br />
 
-            <p>Unfriend: </p>
+            <div style = {{border: 'solid 1.5px', boxShadow: '5px 1px 3px black', backgroundColor: 'cyan'}}>
+            <p style = {{fontWeight: '500'}}>Unfriend: </p>
             <Unfriend />
+            </div>
             <br />
 
-            <p>Promote:</p>
+            <div style = {{border: 'solid 1.5px', boxShadow: '5px 1px 3px black', backgroundColor: 'cyan'}}>
+            <p style = {{fontWeight: '500'}}>Promote: </p>
             <Promote />
+            </div>
             <br />
 
-            <p>Demote:</p>
+            <div style = {{border: 'solid 1.5px', boxShadow: '5px 1px 3px black', backgroundColor: 'cyan'}}>
+            <p style = {{fontWeight: '500'}}>Demote: </p>
             <Demote />
+            </div>
             <br />
 
-            <p>Logout:</p>
+            <div style = {{border: 'solid 1.5px', boxShadow: '5px 1px 3px black', backgroundColor: 'cyan'}}>
+            <p style = {{fontWeight: '500'}}>Logout: </p>
             <Logout />
+            </div>
             <br />
             
             </div>
