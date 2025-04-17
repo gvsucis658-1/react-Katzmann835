@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="style.css">
     <title>User-Prompted-Melody</title>
     <script> var exports = {}; </script>
+    <script src="https://cdn.jsdelivr.net/npm/@magenta/music@1.23.1"></script>
     <script type = "module">
         import {
             Call_Music,
@@ -43,20 +44,20 @@
     <input type="text" id="Melody" name="Melody-Name">
 
     <p>Melody Function called:</p>
-    <button onclick = "Call_Music(document.getElementById('Melody').value)">Calls the Melody</button>
+    <button id = "Melbtn">Calls the Melody</button>
     <br>
     <p>Calls the prompt:</p>
-    <button onclick = "Mel_prompt(document.getElementById('Melody').value)">Call prompt</button>
+    <button id = "Promptbtn">Call prompt</button>
 
     <p>Called Melody is being stored:</p>
-    <button onclick = "store_Mel()">Stores the Melody</button>
+    <button id = "storeMelbtn">Stores the Melody</button>
 
 
     <p> The Melody is now stored.</p>
 
     <p>Melody is being retrived from storage and is being started</p>
 
-    <button onclick = "retrieve_Mel()">Retrieve Melody</button>
+    <button id = "retrieveMelbtn">Retrieve Melody</button>
 
 
     <p> This gets the piano keys and then generates based on user click:</p>
@@ -68,8 +69,58 @@
     <button class = "simulate-key" data-note="F">F Key</button>
     <button class = "simulate-key" data-note="G">G Key</button>
     <button class = "gen_mel">Generate melody</button>
+
+    <p>Retrieved melody is being played</p> 
+
+    <button id = "startMelbtn">Melody has been started</button>
+
+    <p>Melody has been stopped.</p>
+    <button id = "stopMelbtn">Melody has been stopped</button>
+
     <script>
         window.addEventListener('DOMContentLoaded', () => { 
+            const melInput = document.getElementById('Melody');
+            const callMelBtn = document.getElementById('Melbtn');
+            const PromptMelbtn = document.getElementById('Promptbtn');
+            const storeMelbtn = document.getElementById('storeMelbtn');
+            const retrieveMelbtn = document.getElementById('retrieveMelbtn');
+            const startMelbtn = document.getElementById('startMelbtn');
+            const stopMelbtn = document.getElementById('stopMelbtn');
+
+            callMelBtn.addEventListener('click', () => {
+                if(melInput){
+                    Call_Music(melInput.value);
+                } 
+            });
+
+            PromptMelbtn.addEventListener('click', () => {
+                if(melInput){
+                    Mel_prompt(melInput.value);
+                }
+            });
+
+            storeMelbtn.addEventListener('click', () => {
+                if(melInput){
+                    store_Mel();
+                };
+            });
+            retrieveMelbtn.addEventListener('click', () => {
+                if(melInput){
+                    retrieve_Mel();
+                };
+            });
+            startMelbtn.addEventListener('click', () => {
+                if(melInput){
+                    start_Mel();
+                };
+            });
+            stopMelbtn.addEventListener('click', () => {
+                if(melInput){
+                    stop_Mel();
+                };
+            });
+
+
             const simulate_key = document.querySelectorAll(".simulate-key")
 
             simulate_key.forEach(key =>  {
@@ -78,11 +129,11 @@
                     console.log(`play the note ${note}`);
                 });
             });
-            genMel();
         });
 
         function playMel(){
-            const play = new Melody(MusicVAE)
+            const playMelody = new Melody(MusicVAE)
+            playMelody.play();
         }
 
         function genMel(){
@@ -91,18 +142,12 @@
                 new_key.addEventListener('click', () => {
                     console.log("Generate the melody:");
                     const generate = new Melody(MusicVAE);
-                    console.log(MusicVAE.melody);
+                    console.log(generate);
                 });
             });
         }
+        genMel();
     </script>
-
-    <p>Retrieved melody is being played</p> 
-
-    <button onclick = "start_Mel()">Melody has been started</button>
-
-    <p>Melody has been stopped.</p>
-    <button onclick = "stop_Mel()">Melody has been stopped</button>
 
 </body>
 </html>
