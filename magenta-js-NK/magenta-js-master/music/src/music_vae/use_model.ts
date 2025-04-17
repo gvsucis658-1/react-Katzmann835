@@ -45,7 +45,7 @@ export function retrieve_Mel(): string | null {
 //TODO: Once the melody enters the start function located on a new page or module, the function will start the new melody prompted by the user
 export function start_Mel(){
     if (currentMel) {
-    const NewMel = performance.now();
+    console.log("Melody has started:", currentMel);
     MusicVAE.apply(currentMel);
     Melody.apply(currentMel);
     } else {

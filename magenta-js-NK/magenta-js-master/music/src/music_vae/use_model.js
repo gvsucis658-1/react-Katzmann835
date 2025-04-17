@@ -9,8 +9,8 @@ exports.time_Mel = time_Mel;
 exports.stop_Mel = stop_Mel;
 //Psuedocode for new code to ensure the user can choose and create their own music
 //This is based on the usercase workflow chart I created to ensure that what I made is functional
-import { MusicVAE } from './model';
-import { Melody } from '../core/melodies';
+export { MusicVAE } from './model';
+export { Melody } from '../core/melodies';
 
 let currentMel = null;
 //TODO: Make a page that has a function that can call any melody from the code.
