@@ -132,7 +132,7 @@
         });
 
         function playMel(){
-            const playMelody = new Melody(MusicVAE)
+            const playMelody = new Melody(window.MusicVAE)
             playMelody.play();
         }
 
@@ -141,7 +141,7 @@
             gen_key.forEach(new_key => {
                 new_key.addEventListener('click', () => {
                     console.log("Generate the melody:");
-                    const generate = new Melody(MusicVAE);
+                    const generate = new Melody(window.MusicVAE);
                     console.log(generate);
                 });
             });

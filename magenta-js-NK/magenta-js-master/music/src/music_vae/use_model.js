@@ -11,11 +11,10 @@ exports.stop_Mel = stop_Mel;
 //This is based on the usercase workflow chart I created to ensure that what I made is functional
 import { MusicVAE } from './model';
 import { Melody } from '../core/melodies';
-import * as mm from './@magenta/music';
+import * as mm from '/@magenta/music';
 
 export class NewMelody {
-    constructor(Model){
-        this.Model = Model;
+    constructor(){
         this.played = new mm.Player();
     }
 
@@ -45,11 +44,13 @@ export function Mel_prompt(input) {
 //such that the page contains a module which will consist of functions which will take from functions that provide the melodies, and then create a 
 //function that stores the melody
 export function store_Mel() {
-    if (currentMel) {
-        localStorage.setItem("Melody_stored", JSON.stringify(currentMel));
+    if (currentMel && currentMel.sequence) {
+        localStorage.setItem("Melody_stored", JSON.stringify(currentMel.sequence));
         console.log("Melody_stored", currentMel);
     }
-    else {
+    else if (currentMel) {
+        localStorage.setItem("Melody_stored", JSON.stringify(currentMel));
+    } else {
         console.log("Melody is unable to be stored");
     }
 }
@@ -71,11 +72,11 @@ export async function start_Mel() {
         try{
             const newModel = new mm.MusicVAE('https://storage.googleapis.com/magentadata/js/checkpoints/music_vae/mel_chords');
             await newModel.initialize();
-            const newMelody = new NewMelody(newModel);
 
-            const sequence = retrieve_Mel();
-            const Decode = await newModel.decode(sequence, 1);
-            await newMelody.play(Decode);
+            const Decode = await newModel.decode([NewMel], 1);
+            const newMelody = new newMelody();
+
+            await newMelody.play(Decode[0]);
 
             currentMel = {
                 player: newMelody,
