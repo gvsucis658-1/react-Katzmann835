@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useRef } from 'react';
 
 //If the user clicks promote: post/picture is placed placed at the top, meaning user wants more to see it
 
@@ -21,7 +21,10 @@ function Promote({imageURL, commenttext}){
 
     return (
         <div>
-            <div ref={promoteToTop}></div>
+            <div ref={promoteToTop}>
+                <img src = {imageURL} alt = "uploads" style = {{width: '350px', height: '350px'}} />
+                <p>{commenttext}</p>
+            </div>
             <button onClick={handlePromoteImage}>Promote Image</button>
             <button onClick={handlePromoteComment}>Promote Comment</button>
         </div>

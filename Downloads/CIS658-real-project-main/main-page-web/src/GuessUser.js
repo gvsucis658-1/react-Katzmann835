@@ -23,7 +23,7 @@ function GuessUser(){
         const newStyle = {
             color: "black",
             backgroundColor: "black",
-            cursor: "pointer"
+            cursor: "pointer",
         };
         const whenClicked = () => {
             alert('Background has been clicked!');

@@ -8,12 +8,22 @@ function Comments(){
     useEffect(() => {
         const Commented = localStorage.getItem('comments');
         if (Commented) {
-            setcomment(JSON.parse(Commented));
+            try{
+                setcomment(JSON.parse(Commented));
+            } catch (error) {
+                console.error('Was not able to retireve the comment', error);
+            }
         }
     }, []);
 
     useEffect(() => {
-        localStorage.setItem('comments', JSON.stringify(comment));
+        if (comment.length > 0){
+            try {
+                localStorage.setItem('comments', JSON.stringify(comment));
+            } catch (error) {
+                console.error('Was not able to reload the comment', error);
+            }
+        }
     }, [comment]);
 
     const commentSubmit = (commentevent) => {
@@ -56,8 +66,8 @@ function Comments(){
             </form>
 
             <ul>
-                {comment.map((comment, index) => (
-                    <li key ={index}>{comment}
+                {comment.map((CommentItem, index) => (
+                    <li key ={index}>{CommentItem}
                     <br></br>
                     <button onClick={() => updateComment(index)}>Edit Comment</button>
                     <button onClick={() => deleteComment(index)}>Delete Comment</button>

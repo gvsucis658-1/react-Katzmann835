@@ -15,14 +15,14 @@ function FriendLimit(){
     };
 
     const toggleLimit = () => {
-        setLimit(!friendLimited);
+        setLimit(newCount => !newCount);
     };
 
     return(
         <div>
         <p>Friend Limit: {friends}</p>
         <button onClick={friendCount}>Friend Count Limit</button>
-        <button onClick={toggleLimit} disabled = {friendLimited}>{friendLimited ? 'Unlimit' : 'Limit'}</button>
+        <button onClick={toggleLimit}>{friendLimited ? 'Unlimit' : 'Limit'}</button>
         </div>
     )
 }

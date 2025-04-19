@@ -53,6 +53,9 @@ function Login(){
                 />
             </div>
         <button type = "submit">Login</button>
+        <br/>
+        <p>Need a new account, <span style = {{fontweight:'700px'}}>Register here:</span></p>
+        <a href = "/Register">Register</a>
         </div>
         </form>
     );
