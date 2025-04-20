@@ -74,24 +74,15 @@ function Main() {
                 </div>
             )}
             <ToastContainer/>
+            <p>Like or dislike Image?</p>
+            <Likes likeId={imageURL}/>
+            <Dislikes dislikeId={imageURL}/>
             </div>
             <br />
 
             <div style = {{border: 'solid 1.5px', boxShadow: '5px 1px 3px black', backgroundColor: 'cyan'}}>
             <p style = {{fontWeight: '500'}}>Comments: </p>
             <Comments />
-            </div>
-            <br/>
-
-            <div style = {{border: 'solid 1.5px', boxShadow: '5px 1px 3px black', backgroundColor: 'cyan'}}>
-            <p style = {{fontWeight: '500'}}>Likes: </p>
-            <Likes />
-            </div>
-            <br/>
-
-            <div style = {{border: 'solid 1.5px', boxShadow: '5px 1px 3px black', backgroundColor: 'cyan'}}>
-            <p style = {{fontWeight: '500'}}>Dislikes: </p>
-            <Dislikes />
             </div>
             <br/>
 

@@ -1,9 +1,10 @@
 import { useState } from 'react';
 
-function Dislikes(){
+function Dislikes(dislikeId){
     const [dislikes, dislikecount] = useState(0);
 
     const dislikeClicked = () => {
+        console.log(`Adds link with ID: ${dislikeId}`);
         dislikecount(dislikes + 1);
     };
 

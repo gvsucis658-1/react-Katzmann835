@@ -7,11 +7,17 @@ import {ToastContainer, toast} from 'react-toastify';
 //Psuedocode for the Guess Button:
 
 function GuessUser(){
+    const [chosenImage, chosenComment] = useState('');
+    const [setchosenImage, setchosenComment] = useState('');
+    const [newBackground, setnewBackground] = useState(false);
 
 //TODO: the code must choose a picture, or a post that was posted by the user
     const chooseType = () => {
-        chosenImage = Main.call('Image has been Retrieved').uploadedImageURL
-        chosenComment = Comments.call('Comment has been Retrieved').setcommenttext
+        const chosennewImage = Main.uploadedImageURL
+        const chosennewComment = Comments.setcommenttext
+
+        setchosenImage(chosennewImage);
+        setchosenComment(chosennewComment);
     }
 
 //TODO: Once clicked, the picture or post will have the css background color that will make the text or picture dissappear
@@ -19,34 +25,39 @@ function GuessUser(){
 //TODO: The background color for the should be a dark color to obstruct the comment or picture view such as: 
 //Black, Brown, Grey, Maroon, Purple, etc...
 
-    const newObject = ()  => {
         const newStyle = {
-            color: "black",
-            backgroundColor: "black",
-            cursor: "pointer",
+            color: newBackground ? "black": "inherit",
+            backgroundColor: newBackground ? "black": "solid",
+            cursor: "pointer"
         };
         const whenClicked = () => {
             alert('Background has been clicked!');
+            setnewBackground(!newBackground);
         };
-        onclick = {whenClicked}
-        toast.success("User Accepted!")
-        toast.dismiss("User Declined!")
+
+        const Acceptresult = () => {
+            toast.success("User Accepted!")
+        };
+        const Declineresult = () => {
+            toast.dismiss("User Declined!")
+        };
         
 
         return (
             <>
             <p>The buttons will let the user choose an existing image/comment</p>
+            <button onclick={chooseType}>Choose Selected Image or Comment?</button>
+            <br/>
             <button>{chooseType.chosenImage}</button>
             <button>{chooseType.chosenComment}</button>
 
 
             <p>This button will eventually change the Image/Comment to this style:</p>
-            <button style = {newStyle}>Change Image/Comment</button>
+            <button onclick = {() => setnewBackground(true)} style = {newStyle}>Change Image/Comment</button>
 
 
             
             <button style = {{backgroundColor: 'rgb(69, 114, 56)'}}>Accept user</button>
-            <ToastContainer/>
             <button>Decline user</button>
             <ToastContainer/>
             </>

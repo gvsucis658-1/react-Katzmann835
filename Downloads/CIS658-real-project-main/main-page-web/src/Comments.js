@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import {ToastContainer, toast} from 'react-toastify';
+import Likes from './Likes';
+import Dislikes from './Dislikes';
 
 function Comments(){
     const [commenttext, setcommenttext] = useState('');
@@ -63,6 +65,9 @@ function Comments(){
             <br />
             <button type = "submit">Post Comment</button>
             <ToastContainer/>
+            <p>Like or dislike comment?</p>
+            <Likes likeId={comment}/>
+            <Dislikes dislikeId={comment}/>
             </form>
 
             <ul>

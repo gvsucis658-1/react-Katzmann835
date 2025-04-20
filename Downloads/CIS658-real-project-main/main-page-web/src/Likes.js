@@ -1,9 +1,10 @@
 import { useState } from 'react';
 
-function Likes(){
+function Likes({likeId}){
     const [likes, likecount] = useState(0);
 
     const likeClicked = () => {
+        console.log(`Adds link with ID: ${likeId}`);
         likecount(likes + 1);
     };
 
