@@ -64,8 +64,9 @@ function GuessUser(){
 
             <p>Change the Image/Comment to this style once pressed:</p>
             <button onClick = {() => setnewBackground(true)} style = {{backgroundColor: 'rgb(168, 4, 168)'}}>Change Image/Comment</button>
+            <br />
 
-
+            <p>Once done, user can either accept/reject user:</p>
             
             <button style = {{backgroundColor: 'rgb(69, 114, 56)'}} onClick = {Acceptresult}>Accept user</button>
             <button onClick = {Declineresult}>Decline user</button>
