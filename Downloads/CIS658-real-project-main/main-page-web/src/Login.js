@@ -57,6 +57,13 @@ function Login(){
         <br/>
         <p>Need a new account, <span style = {{fontweight:'700px'}}>Register here:</span></p>
         <a href = "/Register">Register</a>
+
+        <br />
+        <p>Access to server:</p>
+        <a href = "/RunServer">Server</a>
+        <br />
+        <p>Access to Friend list:</p>
+        <a href = "/Friends_list">Friend List</a>
         </div>
         </form>
     );
