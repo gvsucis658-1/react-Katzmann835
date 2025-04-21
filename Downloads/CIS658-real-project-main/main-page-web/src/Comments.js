@@ -74,7 +74,7 @@ function Comments(){
                 {comment.map((CommentItem, index) => (
                     <li key ={index}>{CommentItem}
                     <br></br>
-                    <button onClick={() => updateComment(index)}>Edit Comment</button>
+                    <button onClick={() => updateComment(index)} style = {{backgroundColor: 'rgb(168, 4, 168)'}}>Edit Comment</button>
                     <button onClick={() => deleteComment(index)}>Delete Comment</button>
                     
                     </li>

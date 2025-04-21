@@ -25,8 +25,8 @@ function Promote({imageURL, commenttext}){
                 <img src = {imageURL} alt = "uploads" style = {{width: '350px', height: '350px'}} />
                 <p>{commenttext}</p>
             </div>
-            <button onClick={handlePromoteImage}>Promote Image</button>
-            <button onClick={handlePromoteComment}>Promote Comment</button>
+            <button onClick={handlePromoteImage} style = {{backgroundColor: 'rgb(69, 114, 56)'}}>Promote Image</button>
+            <button onClick={handlePromoteComment} style = {{backgroundColor: 'rgb(69, 114, 56)'}}>Promote Comment</button>
         </div>
     );
 }

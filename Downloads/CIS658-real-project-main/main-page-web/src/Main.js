@@ -1,5 +1,5 @@
 import './App.css';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Comments from './Comments.js';
 import Likes from './Likes.js';
 import Dislikes from './Dislikes.js';
@@ -10,11 +10,23 @@ import Promote from './Promote.js';
 import Demote from './Demote.js';
 import FriendLimit from './FriendLimit.js';
 import Logout from './Logout.js';
+import GuessUser from './GuessUser.js';
 import {ToastContainer, toast} from 'react-toastify';
 
 function Main() {
 
     const [imageURL, newimageURL] = useState([]);
+
+    useEffect(() => {
+        const reloadImage = JSON.parse(localStorage.getItem('uploads'));
+        if (reloadImage && reloadImage.length > 0){
+            newimageURL(reloadImage);
+        };
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem('uploads', JSON.stringify(imageURL));
+    }, [imageURL]);
 
     const postImage = (event) => {
     const file = event.target.files[0];
@@ -46,12 +58,23 @@ function Main() {
         console.error('User failed to select an image');
     }
     };
+
+    const deleteImage = (index) => {
+        const DelImg = window.confirm('Are you sure you want to delete this image?')
+        if (DelImg){
+            const updatedimage = [...imageURL];
+            updatedimage.splice(index, 1);
+            newimageURL(updatedimage);
+            toast.info('Image Deleted!');
+        }
+    };
+
     return (
         <div>
             <h1 style = {{fontWeight: '1000', boxShadow: '10px 10px 2.5px black', }}>Nathan's social media website</h1>
 
             <div style = {{border: 'solid 1.5px', boxShadow: '5px 1px 3px black', backgroundColor: 'cyan'}}>
-            <p style = {{fontWeight: '500'}}> Post a picture: </p>
+            <h2 style = {{fontWeight: '500'}}> Post a picture: </h2>
             <input type = "file"
             id = "image_upload"
             accept = "image/*"
@@ -64,12 +87,16 @@ function Main() {
             {imageURL.length > 0 && (
                 <div>
                     {imageURL.map((url, index) => (
+                        <div>
                         <img
                             key={index}
                             src={url}
                             alt="uploads"
                             style={{height: '350px', width: '350px', border: 'solid 3px'}}
                         />
+                        <br />
+                        <button onClick = {() => deleteImage(index)}> Delete Image</button>
+                        </div>
                     ))}
                 </div>
             )}
@@ -81,49 +108,55 @@ function Main() {
             <br />
 
             <div style = {{border: 'solid 1.5px', boxShadow: '5px 1px 3px black', backgroundColor: 'cyan'}}>
-            <p style = {{fontWeight: '500'}}>Comments: </p>
+            <h2 style = {{fontWeight: '500'}}>Comments: </h2>
             <Comments />
             </div>
             <br/>
 
             <div style = {{border: 'solid 1.5px', boxShadow: '5px 1px 3px black', backgroundColor: 'cyan'}}>
-            <p style = {{fontWeight: '500'}}>Reply to the post: </p>
+            <h2 style = {{fontWeight: '500'}}>Reply to the post: </h2>
             <Replies />
             </div>
             <br/>
 
             <div style = {{border: 'solid 1.5px', boxShadow: '5px 1px 3px black', backgroundColor: 'cyan'}}>
-            <p style = {{fontWeight: '500'}}>Friends: </p>
+            <h2 style = {{fontWeight: '500'}}>Friends: </h2>
             <Friends />
             </div>
             <br />
 
             <div style = {{border: 'solid 1.5px', boxShadow: '5px 1px 3px black', backgroundColor: 'cyan'}}>
-            <p style = {{fontWeight: '500'}}>Limit/Unlimit Friend amount: </p>
+            <h2 style = {{fontWeight: '500'}}>Limit/Unlimit Friend amount: </h2>
             <FriendLimit />
             </div>
             <br />
 
             <div style = {{border: 'solid 1.5px', boxShadow: '5px 1px 3px black', backgroundColor: 'cyan'}}>
-            <p style = {{fontWeight: '500'}}>Unfriend: </p>
+            <h2 style = {{fontWeight: '500'}}>Unfriend: </h2>
             <Unfriend />
             </div>
             <br />
 
             <div style = {{border: 'solid 1.5px', boxShadow: '5px 1px 3px black', backgroundColor: 'cyan'}}>
-            <p style = {{fontWeight: '500'}}>Promote: </p>
+            <h2 style = {{fontWeight: '500'}}>Promote: </h2>
             <Promote />
             </div>
             <br />
 
             <div style = {{border: 'solid 1.5px', boxShadow: '5px 1px 3px black', backgroundColor: 'cyan'}}>
-            <p style = {{fontWeight: '500'}}>Demote: </p>
+            <h2 style = {{fontWeight: '500'}}>Demote: </h2>
             <Demote />
             </div>
             <br />
 
             <div style = {{border: 'solid 1.5px', boxShadow: '5px 1px 3px black', backgroundColor: 'cyan'}}>
-            <p style = {{fontWeight: '500'}}>Logout: </p>
+            <h2 style = {{fontWeight: '500'}}>Guess the User Image/Comment: </h2>
+            <GuessUser />
+            </div>
+            <br />
+
+            <div style = {{border: 'solid 1.5px', boxShadow: '5px 1px 3px black', backgroundColor: 'cyan'}}>
+            <h2 style = {{fontWeight: '500'}}>Logout: </h2>
             <Logout />
             </div>
             <br />

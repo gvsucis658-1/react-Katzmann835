@@ -9,7 +9,7 @@ function Likes({likeId}){
     };
 
     return (
-        <button onClick={likeClicked}>Like: {likes} </button> 
+        <button onClick={likeClicked} style = {{backgroundColor: 'rgb(69, 114, 56)'}}>Like: {likes} </button> 
     );
 }
 

@@ -29,9 +29,10 @@ function Login(){
     };
     return(
         <form onSubmit={submitForm}>
-            <h1 style = {{fontWeight: '1000', boxShadow: '10px 10px 2.5px black', }}>Login:</h1>
+            <h1 style = {{fontWeight: '1000', boxShadow: '10px 10px 2.5px black', }}>Login</h1>
             <div style = {{border: 'solid 1.5px', boxShadow: '5px 1px 3px black', backgroundColor: 'cyan'}}>
             <div>
+                <h2 style = {{fontWeight: '500'}}>Login User: </h2>
                 <label htmlFor='username'>Username:</label>
                 <input
                     type= "text"

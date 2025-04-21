@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import {ToastContainer, toast} from 'react-toastify';
 
 function Replies(){
     const [replytext, setreplytext] = useState('');
@@ -18,6 +19,12 @@ function Replies(){
         setreply(newReply);
     };
 
+    const deleteReply = (index) => {
+        const newReply = reply.filter((_, i) => i !== index);
+        setreply(newReply);
+        toast.success('Reply has been deleted!');
+    };
+
     return(
             <div>
             <form onSubmit={replySubmit}>
@@ -34,7 +41,8 @@ function Replies(){
                 {reply.map((reply, index) => (
                     <li key ={index}>{reply}
                     <br></br>
-                    <button onClick={() => updateReply(index, prompt("new Reply: "))}>Edit Reply to User</button>
+                    <button onClick={() => updateReply(index, prompt("new Reply: "))} style = {{backgroundColor: 'rgb(168, 4, 168)'}}>Edit Reply to User</button>
+                    <button onClick={() => deleteReply(index)}>Delete Reply</button>
                     </li>
                 ))}
             </ul>
