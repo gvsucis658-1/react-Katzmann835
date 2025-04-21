@@ -22,7 +22,7 @@ function Demote({imageURL, commenttext}){
     return (
         <div>
             <div ref={demoteToBottom} style={{position: '1000 px'}}>
-                <img src = {imageURL} alt = "uploads" style = {{width: '350px', height: '350px'}} />
+                <img src = {imageURL} alt = "uploads" style = {{width: '350px', height: '350px', border: 'solid, 3px'}} />
                 <p>{commenttext}</p>
             </div>
             <button onClick={handleDemoteImage}>Demote Image</button>

@@ -46,7 +46,7 @@ function GuessUser(){
 
         return (
             <>
-            <p>The buttons will let the user choose an existing image/comment</p>
+            <p>The buttons will let the user choose an existing image/comment:</p>
             <button onClick={chooseType}>Choose Selected Image or Comment?</button>
             <br/>
             
@@ -62,7 +62,7 @@ function GuessUser(){
             )}
 
 
-            <p>This button will eventually change the Image/Comment to this style:</p>
+            <p>Change the Image/Comment to this style once pressed:</p>
             <button onClick = {() => setnewBackground(true)} style = {{backgroundColor: 'rgb(168, 4, 168)'}}>Change Image/Comment</button>
 
 

@@ -139,19 +139,26 @@ function Main() {
 
             <div style = {{border: 'solid 1.5px', boxShadow: '5px 1px 3px black', backgroundColor: 'cyan'}}>
             <h2 style = {{fontWeight: '500'}}>Promote: </h2>
-            <Promote />
+            <Promote 
+            imageURL={imageURL.length > 0 ? imageURL[0] : ''}
+            commenttext={JSON.parse(localStorage.getItem('comments'))?.splice(0, 1)[0] || ''} />
             </div>
             <br />
 
             <div style = {{border: 'solid 1.5px', boxShadow: '5px 1px 3px black', backgroundColor: 'cyan'}}>
             <h2 style = {{fontWeight: '500'}}>Demote: </h2>
-            <Demote />
+            <Demote 
+            imageURL={imageURL.length > 0 ? imageURL[imageURL.length - 1] : ''}
+            commenttext={JSON.parse(localStorage.getItem('comments'))?.splice(-1)[0] || ''} />
             </div>
             <br />
 
             <div style = {{border: 'solid 1.5px', boxShadow: '5px 1px 3px black', backgroundColor: 'cyan'}}>
             <h2 style = {{fontWeight: '500'}}>Guess the User Image/Comment: </h2>
-            <GuessUser />
+            <GuessUser 
+            imageURL={imageURL}
+            commenttext={JSON.parse(localStorage.getItem('comments')) || []}
+            />
             </div>
             <br />
 

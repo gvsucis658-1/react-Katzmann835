@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import {ToastContainer, toast} from 'react-toastify';
+import Likes from './Likes';
+import Dislikes from './Dislikes';
 
 function Replies(){
     const [replytext, setreplytext] = useState('');
@@ -35,6 +37,10 @@ function Replies(){
             />
             <br />
             <button type = "submit">Reply</button>
+            <ToastContainer/>
+            <p>Like or dislike Reply?</p>
+            <Likes likeId={reply}/>
+            <Dislikes dislikeId={reply}/>
             </form>
 
             <ul>
