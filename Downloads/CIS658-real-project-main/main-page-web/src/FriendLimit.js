@@ -1,21 +1,36 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 //This function will a set limit to how many friends a user has, and unlimit will reverse this
 
 function FriendLimit(){
-    const [friends, friendcount] = useState(0);
-    const [friendLimited, setLimit] = useState(false);
     const limit = 4;
+    const [friends, friendcount] = useState(() => {
+        const storeFriendLimit = localStorage.getItem('friends');
+        return storeFriendLimit ? parseInt(storeFriendLimit, 10) : 0;
+    });
+
+    const [friendLimited, setLimit] = useState(() => {
+        const storeFriendLimit = localStorage.getItem('friendLimited');
+        return storeFriendLimit ? JSON.parse(storeFriendLimit) : false;
+    });
+
+    useEffect(() => {
+        localStorage.setItem('friends', friends);
+    }, [friends]);
+
+    useEffect(() => {
+        localStorage.setItem('friendLimited', friendLimited);
+    }, [friendLimited]);
 
     const friendCount = () => {
         if(friendLimited && friends >= limit){
             return;
         }
-        friendcount(newCount => newCount + 1);
+        friendcount(prev => prev + 1);
     };
 
     const toggleLimit = () => {
-        setLimit(newCount => !newCount);
+        setLimit(prev => !prev);
     };
 
     return(

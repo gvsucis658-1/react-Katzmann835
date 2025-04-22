@@ -1,7 +1,15 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function Unfriend(){
-    const [unfriend, deleteFriend] = useState(0);
+    const [unfriend, deleteFriend] = useState(() => {
+            const storedunFriend = localStorage.getItem('deleteFriend');
+            return storedunFriend ? parseInt(storedunFriend, 10): 0;
+        });
+    
+        useEffect(() => {
+            localStorage.setItem('deleteFriend', unfriend);
+        }, [unfriend]);
+
     const unfriendClicked = () => {
         deleteFriend(unfriend + 1);
     };

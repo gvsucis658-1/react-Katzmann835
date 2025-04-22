@@ -1,9 +1,17 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function Friends(){
-    const [friends, friendcount] = useState(0);
+    const [friends, friendcount] = useState(() => {
+        const storedFriends = localStorage.getItem('friendcount');
+        return storedFriends ? parseInt(storedFriends, 10): 0;
+    });
+
+    useEffect(() => {
+        localStorage.setItem('friendcount', friends);
+    }, [friends]);
+
     const friendClicked = () => {
-        friendcount(friends + 1);
+        friendcount(prev => prev + 1);
     };
 
     return (

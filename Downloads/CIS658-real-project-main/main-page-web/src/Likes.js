@@ -1,11 +1,18 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function Likes({likeId}){
-    const [likes, likecount] = useState(0);
+    const [likes, setLikes] = useState(() => {
+        const LikesUsed = localStorage.getItem(`likes-${likeId}`);
+        return LikesUsed ? JSON.parse(LikesUsed) : 0;
+    });
+
+    useEffect(() => {
+        localStorage.setItem(`likes-${likeId}`, JSON.stringify(likes));
+    }, [likes, likeId])
 
     const likeClicked = () => {
         console.log(`Adds link with ID: ${likeId}`);
-        likecount(likes + 1);
+        setLikes(likes + 1);
     };
 
     return (

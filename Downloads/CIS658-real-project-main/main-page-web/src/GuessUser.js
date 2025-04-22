@@ -1,6 +1,4 @@
 import {useState, useEffect} from 'react';
-import Main from './Main.js';
-import Comments from './Comments.js';
 import {ToastContainer, toast} from 'react-toastify';
 
 
@@ -11,14 +9,20 @@ function GuessUser(){
     const [chosenComment, setchosenComment] = useState('');
     const [newBackground, setnewBackground] = useState(false);
 
-    const getImageURL = `http://localhost:3001/Main`;
-    const getComment = 'comments';
+    const getImageURL = `http://localhost:3001/uploads/image-1745255785405.jpeg`;
+    const getComment = JSON.parse(localStorage.getItem('comments')) || [];
+
+    useEffect(() => {
+        if(getComment.length > 0){
+            setchosenComment(getComment[0]);
+        }
+        setchosenImage(getImageURL);
+    }, []);
 
 //TODO: the code must choose a picture, or a post that was posted by the user
     const chooseType = () => {
-
         setchosenImage(getImageURL);
-        setchosenComment(getComment);
+        setchosenComment(getComment.length > 0 ? getComment[0] : 'Comment is not avalible');
     }
 
 //TODO: Once clicked, the picture or post will have the css background color that will make the text or picture dissappear
@@ -29,8 +33,15 @@ function GuessUser(){
         const newStyle = {
             color: newBackground ? "black": "inherit",
             backgroundColor: newBackground ? "black": "inherit",
-            cursor: "pointer"
+            cursor: "pointer",
+            padding: "10px"
         };
+
+        const imageStyle = {
+            display: newBackground ? "none": "block",
+            maxWidth: "100%",
+            height: "auto"
+        }
         const whenClicked = () => {
             alert('Background has been clicked!');
             setnewBackground(!newBackground);
@@ -51,8 +62,13 @@ function GuessUser(){
             <br/>
             
             {chosenImage && (
-                <div onClick={whenClicked} style={newStyle}>
-                <img src={chosenImage} alt = 'uploads'/>
+                <div onClick={whenClicked} style={imageStyle}>
+                <img src={chosenImage} 
+                alt = 'uploads'
+                style = {{
+                    height: '350px', width: '350px', border: 'solid 3px'
+                }}
+                />
                 </div>
             )}
             {chosenComment && (
